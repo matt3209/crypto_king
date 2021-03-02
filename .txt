@@ -1,0 +1,13 @@
+ListView.separated(
+                  itemCount: tickets.length,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      title: Text(tickets[index]),
+                    );
+                  },
+                  separatorBuilder: (context, index) {
+                    return Divider(
+                      color: Colors.black,
+                    );
+                  },
+                )
