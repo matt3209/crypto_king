@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'buytickets.dart';
 
 void main() {
   runApp(MyApp());
@@ -47,7 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: DefaultTabController(
-        length: 3,
+        length: 4,
         child: Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.lightBlueAccent[700],
@@ -92,34 +93,16 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               )),
               Container(
-                  child: new Column(
-                children: [
-                  new Container(
-                      child: TextFormField(
-                    decoration: InputDecoration(
-                        labelText: 'Number of Tickets you want to purchase'),
-                  )),
-                  new Container(
-                    padding:
-                        const EdgeInsets.only(top: 5, right: 20.0, left: 300),
-                    child: ElevatedButton(
-                      onPressed: null,
-                      child: Text('Confirm Tickets'),
-                    ),
-                  ),
-                  new Container(
-                      child: ListTile(
-                          title: Text(
-                              'Amount of Coins the User has in their Wallet: 100.00'))),
-                  new Container(
-                      child: ListTile(
-                          title:
-                              Text('Amount of Tickets the User has: 100.00'))),
-                  new Container(
-                      child: ListTile(
-                          title: Text('Odds of Winning the Lottery: 2.5555%'))),
-                ],
-              ))
+                  padding:
+                      const EdgeInsets.only(top: 5, right: 20.0, left: 300),
+                  child: ElevatedButton(onPressed: null, child: Text('Login'))),
+              Container(
+                  child: Center(
+                      child: Text(
+                'THIS IS WHERE WE WILL HAVE INFORMATION SO PEOPLE KNOW WHAT IS GOING ON.',
+                textAlign: TextAlign.center,
+                textScaleFactor: 3,
+              )))
             ],
           ),
         ),
@@ -148,6 +131,10 @@ class _MyHomePageState extends State<MyHomePage> {
           Tab(
             text: "Wallet",
             icon: Icon(Icons.account_balance_wallet),
+          ),
+          Tab(
+            text: "Info",
+            icon: Icon(Icons.question_answer),
           )
         ],
       ),

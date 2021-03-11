@@ -1,13 +1,29 @@
-ListView.separated(
-                  itemCount: tickets.length,
-                  itemBuilder: (context, index) {
-                    return ListTile(
-                      title: Text(tickets[index]),
-                    );
-                  },
-                  separatorBuilder: (context, index) {
-                    return Divider(
-                      color: Colors.black,
-                    );
-                  },
-                )
+
+                  child: new Column(
+                children: [
+                  new Container(
+                      child: TextFormField(
+                    decoration: InputDecoration(
+                        labelText: 'Number of Tickets you want to purchase'),
+                  )),
+                  new Container(
+                    padding:
+                        const EdgeInsets.only(top: 5, right: 20.0, left: 300),
+                    child: ElevatedButton(
+                      onPressed: null,
+                      child: Text('Confirm Tickets'),
+                    ),
+                  ),
+                  new Container(
+                      child: ListTile(
+                          title: Text(
+                              'Amount of Coins the User has in their Wallet: 100.00'))),
+                  new Container(
+                      child: ListTile(
+                          title:
+                              Text('Amount of Tickets the User has: 100.00'))),
+                  new Container(
+                      child: ListTile(
+                          title: Text('Odds of Winning the Lottery: 2.5555%'))),
+                ],
+              )
