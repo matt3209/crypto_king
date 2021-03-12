@@ -59,13 +59,18 @@ class _MyHomePageState extends State<MyHomePage> {
           body: TabBarView(
             children: [
               Container(
-                  child: Center(
-                      child: Text(
-                'The Winning Lottery Number is: ',
-                textAlign: TextAlign.center,
-                textScaleFactor: 3,
-              ))),
-              //ElevatedButton(onPressed: null, child: Text('hello')),
+                  child: new Column(
+                children: [
+                  new Container(
+                      child: Text('The winning lottery ticket is...')),
+                  new Container(
+                    child: ElevatedButton(
+                      onPressed: null,
+                      child: Text('Buy Tickets'),
+                    ),
+                  )
+                ],
+              )),
               Container(
                   child: new Stack(
                 children: [
