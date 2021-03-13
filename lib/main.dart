@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'buytickets.dart';
-//ryan and hunter and matt
+import 'package:crypto_king/buytickets.dart';
 
 void main() {
   runApp(MyApp());
@@ -41,11 +40,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   final tickets = ['User\'s Tickets', '0001', '0002', '0003', '0003'];
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
 
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -63,10 +57,17 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: new Column(
                 children: [
                   new Container(
-                      child: Text('The winning lottery ticket is...')),
+                      child: Column(children: [
+                    Text('The winning lottery ticket is...')
+                  ])),
                   new Container(
                     child: ElevatedButton(
-                      onPressed: null,
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => SecondRoute()));
+                      },
                       child: Text('Buy Tickets'),
                     ),
                   )
@@ -91,9 +92,14 @@ class _MyHomePageState extends State<MyHomePage> {
                   )),
                   new Container(
                     padding:
-                        const EdgeInsets.only(top: 5, right: 20.0, left: 300),
+                        const EdgeInsets.only(top: 515, right: 20.0, left: 300),
                     child: ElevatedButton(
-                      onPressed: null,
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => SecondRoute()));
+                      },
                       child: Text('Buy Tickets'),
                     ),
                   )
