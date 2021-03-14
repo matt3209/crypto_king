@@ -3,6 +3,7 @@ import 'package:crypto_king/buytickets.dart';
 import 'package:crypto_king/ticketstats.dart';
 import 'package:crypto_king/cryptoinfo.dart';
 import 'package:crypto_king/walletlogin.dart';
+import 'package:crypto_king/loggedintickets.dart';
 
 void main() {
   runApp(MyApp());
@@ -102,50 +103,50 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       new Container(
                           child: Text(
-                              'The BUY TICKETS button will only be here if a user IS logged in.')),
+                              'The BUY TICKETS button will only be here if a user IS logged in. Login functionality to come.')),
                       new Container(
                         child: ElevatedButton(
                           onPressed: () {
-                            DefaultTabController.of(context).animateTo(2);
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => TicketLoggedIn()));
                           },
                           child: Text('Login'),
                         ),
                       ),
                       new Container(
                           child: Text(
-                              'The LOGIN button will only be here if a user IS NOT logged in. When clicked, this takes you to the wallet login')),
+                              'The LOGIN button will only be here if a user IS NOT logged in. When clicked, this takes you to the wallet login. Login functionality to come.')),
                     ],
                   )),
                   Container(
-                      child: new Stack(
+                      child: Column(
                     children: [
                       new Container(
-                          child: ListView.separated(
-                        itemCount: tickets.length,
-                        itemBuilder: (context, index) {
-                          return ListTile(
-                            title: Text(tickets[index]),
-                          );
-                        },
-                        separatorBuilder: (context, index) {
-                          return Divider(
-                            color: Colors.black,
-                          );
-                        },
-                      )),
+                          child: Column(children: <Widget>[
+                        Text(
+                            'To view your tickets for this lottery please log into your crypto wallet by going to the wallet tab. Login functionality to come.'),
+                        ElevatedButton(
+                          onPressed: () {},
+                          child: Text('Login'),
+                        ),
+                      ])),
                       new Container(
-                        padding: const EdgeInsets.only(
-                            top: 515, right: 20.0, left: 300),
-                        child: ElevatedButton(
+                          child: Column(children: <Widget>[
+                        Text(
+                            'Prof Rogers - to view what a user would see when they are actually logged in, click the button below.'),
+                        ElevatedButton(
                           onPressed: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => SecondRoute()));
+                                    builder: (context) => TicketLoggedIn()));
                           },
-                          child: Text('Buy Tickets'),
+                          child: Text('Logged-In User View'),
                         ),
-                      )
+                        Image(image: AssetImage('assets/images/pie-chart.png'))
+                      ])),
                     ],
                   )),
                   Container(

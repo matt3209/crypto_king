@@ -41,6 +41,14 @@ class __IntegerExampleState extends State<_IntegerExample> {
                   title: Text("Confirm Ticket Purchase"),
                   content: Text("Are you sure you want to purchase?"),
                   actions: <Widget>[
+                    // ignore: deprecated_member_use
+                    FlatButton(
+                      onPressed: () {
+                        Navigator.of(ctx).pop();
+                      },
+                      child: Text("Cancel"),
+                    ),
+                    // ignore: deprecated_member_use
                     FlatButton(
                       onPressed: () {
                         return showDialog(
