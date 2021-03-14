@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:crypto_king/buytickets.dart';
 import 'package:crypto_king/ticketstats.dart';
 import 'package:crypto_king/cryptoinfo.dart';
+import 'package:crypto_king/walletlogin.dart';
 
 void main() {
   runApp(MyApp());
@@ -41,7 +42,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-  final tickets = ['User\'s Tickets', '0001', '0002', '0003', '0003'];
+  final tickets = ['Your Owned Tickets', '0001', '0002', '0003', '0004'];
 
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -49,8 +50,13 @@ class _MyHomePageState extends State<MyHomePage> {
             length: 4,
             child: Scaffold(
               appBar: AppBar(
-                backgroundColor: Colors.lightBlueAccent[700],
-                title: Text("Crypto King"),
+                backgroundColor: Colors.black87,
+                title: Text(
+                  "Crypto King",
+                  style: TextStyle(
+                    color: Colors.yellowAccent,
+                  ),
+                ),
               ),
               bottomNavigationBar: menu(),
               body: TabBarView(
@@ -60,7 +66,28 @@ class _MyHomePageState extends State<MyHomePage> {
                     children: [
                       new Container(
                           child: Column(children: [
-                        Text('The winning lottery ticket is...')
+                        Image(image: AssetImage('assets/images/logo_full.png')),
+                        Text('Previous Lottery Winning Ticket:',
+                            style: TextStyle(
+                              fontSize: 25,
+                            )),
+                        Text(
+                          '#1111',
+                          style: TextStyle(fontSize: 40),
+                        ),
+                        Text('Enjoy Your Prize',
+                            style: TextStyle(fontSize: 25)),
+                        Text(
+                          'Current Lottery:',
+                          style: TextStyle(fontSize: 35),
+                        ),
+                        Text(
+                          '20 Tickets Left for Sale',
+                          style: TextStyle(fontSize: 35),
+                        ),
+                        Text(
+                            'Once the last ticket is bought, the lottery will be drawn',
+                            style: TextStyle(fontSize: 20)),
                       ])),
                       new Container(
                         child: ElevatedButton(
@@ -72,7 +99,21 @@ class _MyHomePageState extends State<MyHomePage> {
                           },
                           child: Text('Buy Tickets'),
                         ),
-                      )
+                      ),
+                      new Container(
+                          child: Text(
+                              'The BUY TICKETS button will only be here if a user IS logged in.')),
+                      new Container(
+                        child: ElevatedButton(
+                          onPressed: () {
+                            DefaultTabController.of(context).animateTo(2);
+                          },
+                          child: Text('Login'),
+                        ),
+                      ),
+                      new Container(
+                          child: Text(
+                              'The LOGIN button will only be here if a user IS NOT logged in. When clicked, this takes you to the wallet login')),
                     ],
                   )),
                   Container(
@@ -112,7 +153,17 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Column(children: <Widget>[
                         Image(
                             image: AssetImage('assets/images/WALLETLINK.png')),
-                        ElevatedButton(onPressed: null, child: Text('Login'))
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ConnectedWallet()));
+                          },
+                          child: Text('Login'),
+                        ),
+                        Text(
+                            'Prof. Rogers, please click this Login button to see what a Logged in state would appear as. We are currently working on the functionality of switching states.'),
                       ])),
                   Container(
                       child: ListView(
@@ -241,13 +292,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget menu() {
     return Container(
-      color: Colors.lightBlueAccent[700],
+      color: Colors.black87,
       child: TabBar(
         labelColor: Colors.white,
-        unselectedLabelColor: Colors.white70,
+        unselectedLabelColor: Colors.yellowAccent,
         indicatorSize: TabBarIndicatorSize.tab,
         indicatorPadding: EdgeInsets.all(5.0),
-        indicatorColor: Colors.black,
+        indicatorColor: Colors.yellowAccent,
         tabs: [
           Tab(
             text: "Lottery",
@@ -262,7 +313,7 @@ class _MyHomePageState extends State<MyHomePage> {
             icon: Icon(Icons.account_balance_wallet),
           ),
           Tab(
-            text: "Info",
+            text: "App Info",
             icon: Icon(Icons.question_answer),
           )
         ],

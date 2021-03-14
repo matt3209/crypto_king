@@ -5,8 +5,13 @@ class CryptoWalletInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Crypto Info"),
-      ),
+          backgroundColor: Colors.black87,
+          title: Text(
+            "Crypto King",
+            style: TextStyle(
+              color: Colors.yellowAccent,
+            ),
+          )),
       body: Center(
         child: ElevatedButton(
           onPressed: () {
