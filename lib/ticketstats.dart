@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
-class SecondRoute extends StatelessWidget {
+class TicketStats extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Tickets"),
+        title: Text("Ticket STATS YOU LOST!"),
       ),
       body: Center(
         child: ElevatedButton(
           onPressed: () {
             Navigator.pop(context);
           },
-          child: Text('Go back'),
+          child: Text('Go back!'),
         ),
       ),
     );
