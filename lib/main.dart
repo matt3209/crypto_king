@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:crypto_king/buytickets.dart';
 import 'package:crypto_king/ticketstats.dart';
+import 'package:crypto_king/cryptoinfo.dart';
 
 void main() {
   runApp(MyApp());
@@ -44,155 +45,198 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: DefaultTabController(
-        length: 4,
-        child: Scaffold(
-          appBar: AppBar(
-            backgroundColor: Colors.lightBlueAccent[700],
-            title: Text("Crypto King"),
-          ),
-          bottomNavigationBar: menu(),
-          body: TabBarView(
-            children: [
-              Container(
-                  child: new Column(
+        home: DefaultTabController(
+            length: 4,
+            child: Scaffold(
+              appBar: AppBar(
+                backgroundColor: Colors.lightBlueAccent[700],
+                title: Text("Crypto King"),
+              ),
+              bottomNavigationBar: menu(),
+              body: TabBarView(
                 children: [
-                  new Container(
-                      child: Column(children: [
-                    Text('The winning lottery ticket is...')
-                  ])),
-                  new Container(
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => SecondRoute()));
-                      },
-                      child: Text('Buy Tickets'),
-                    ),
-                  )
-                ],
-              )),
-              Container(
-                  child: new Stack(
-                children: [
-                  new Container(
-                      child: ListView.separated(
-                    itemCount: tickets.length,
-                    itemBuilder: (context, index) {
-                      return ListTile(
-                        title: Text(tickets[index]),
-                      );
-                    },
-                    separatorBuilder: (context, index) {
-                      return Divider(
-                        color: Colors.black,
-                      );
-                    },
+                  Container(
+                      child: new Column(
+                    children: [
+                      new Container(
+                          child: Column(children: [
+                        Text('The winning lottery ticket is...')
+                      ])),
+                      new Container(
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => SecondRoute()));
+                          },
+                          child: Text('Buy Tickets'),
+                        ),
+                      )
+                    ],
                   )),
-                  new Container(
-                    padding:
-                        const EdgeInsets.only(top: 515, right: 20.0, left: 300),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => SecondRoute()));
-                      },
-                      child: Text('Buy Tickets'),
-                    ),
-                  )
+                  Container(
+                      child: new Stack(
+                    children: [
+                      new Container(
+                          child: ListView.separated(
+                        itemCount: tickets.length,
+                        itemBuilder: (context, index) {
+                          return ListTile(
+                            title: Text(tickets[index]),
+                          );
+                        },
+                        separatorBuilder: (context, index) {
+                          return Divider(
+                            color: Colors.black,
+                          );
+                        },
+                      )),
+                      new Container(
+                        padding: const EdgeInsets.only(
+                            top: 515, right: 20.0, left: 300),
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => SecondRoute()));
+                          },
+                          child: Text('Buy Tickets'),
+                        ),
+                      )
+                    ],
+                  )),
+                  Container(
+                      height: 30,
+                      child: Column(children: <Widget>[
+                        Image(
+                            image: AssetImage('assets/images/WALLETLINK.png')),
+                        ElevatedButton(onPressed: null, child: Text('Login'))
+                      ])),
+                  Container(
+                      child: ListView(
+                    children: <Widget>[
+                      Container(
+                        margin: EdgeInsets.all(8.0),
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(8.0))),
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => TicketStats()));
+                            },
+                            child: Column(
+                              crossAxisAlignment:
+                                  CrossAxisAlignment.stretch, // add this
+                              children: <Widget>[
+                                ClipRRect(
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(8.0),
+                                    topRight: Radius.circular(8.0),
+                                  ),
+                                  child: Image(
+                                      image:
+                                          AssetImage('assets/images/dots.png'),
+                                      // width: 300,
+                                      height: 150,
+                                      fit: BoxFit.fill),
+                                ),
+                                ListTile(
+                                  title: Text('Ticket Sales Data'),
+                                  subtitle: Text(
+                                      'Click here to learn more about the number of tickets sold and the number of tickets still available'),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.all(8.0),
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(8.0))),
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => SecondRoute()));
+                            },
+                            child: Column(
+                              crossAxisAlignment:
+                                  CrossAxisAlignment.stretch, // add this
+                              children: <Widget>[
+                                ClipRRect(
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(8.0),
+                                    topRight: Radius.circular(8.0),
+                                  ),
+                                  child: Image.network(
+                                      'https://placeimg.com/640/480/any',
+                                      // width: 300,
+                                      height: 150,
+                                      fit: BoxFit.fill),
+                                ),
+                                ListTile(
+                                  title: Text('How the Game Works'),
+                                  subtitle:
+                                      Text('Click here to learn more about '),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.all(8.0),
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(8.0))),
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          CryptoWalletInfo()));
+                            },
+                            child: Column(
+                              crossAxisAlignment:
+                                  CrossAxisAlignment.stretch, // add this
+                              children: <Widget>[
+                                ClipRRect(
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(8.0),
+                                    topRight: Radius.circular(8.0),
+                                  ),
+                                  child: Image.network(
+                                      'https://placeimg.com/640/480/any',
+                                      // width: 300,
+                                      height: 150,
+                                      fit: BoxFit.fill),
+                                ),
+                                ListTile(
+                                  title: Text('Crypto Wallet Info'),
+                                  subtitle: Text('Learn more about Wallets'),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  )),
                 ],
-              )),
-              Container(
-                  height: 30,
-                  child: Column(children: <Widget>[
-                    Image(image: AssetImage('assets/images/WALLETLINK.png')),
-                    ElevatedButton(onPressed: null, child: Text('Login'))
-                  ])),
-              Container(
-                  child: Column(children: <Widget>[
-                Container(
-                  margin: EdgeInsets.all(8.0),
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(8.0))),
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => TicketStats()));
-                      },
-                      child: Column(
-                        crossAxisAlignment:
-                            CrossAxisAlignment.stretch, // add this
-                        children: <Widget>[
-                          ClipRRect(
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(8.0),
-                              topRight: Radius.circular(8.0),
-                            ),
-                            child: Image(
-                                image: AssetImage('assets/images/dots.png'),
-                                // width: 300,
-                                height: 150,
-                                fit: BoxFit.fill),
-                          ),
-                          ListTile(
-                            title: Text('Ticket Sales Data'),
-                            subtitle: Text(
-                                'Click here to learn more about the number of tickets sold and the number of tickets still available'),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.all(8.0),
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(8.0))),
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => SecondRoute()));
-                      },
-                      child: Column(
-                        crossAxisAlignment:
-                            CrossAxisAlignment.stretch, // add this
-                        children: <Widget>[
-                          ClipRRect(
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(8.0),
-                              topRight: Radius.circular(8.0),
-                            ),
-                            child: Image.network(
-                                'https://placeimg.com/640/480/any',
-                                // width: 300,
-                                height: 150,
-                                fit: BoxFit.fill),
-                          ),
-                          ListTile(
-                            title: Text('Pub 1'),
-                            subtitle: Text('Location 1'),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ])),
-            ],
-          ),
-        ),
-      ),
-    );
+              ),
+            )));
   }
 
   Widget menu() {

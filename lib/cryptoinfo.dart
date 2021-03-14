@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class TicketStats extends StatelessWidget {
+class CryptoWalletInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Ticket Stats"),
+        title: Text("Crypto Info"),
       ),
       body: Center(
         child: ElevatedButton(
