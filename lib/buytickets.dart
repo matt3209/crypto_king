@@ -20,7 +20,7 @@ class _IntegerExample extends StatefulWidget {
 }
 
 class __IntegerExampleState extends State<_IntegerExample> {
-  int _currentValue = 3;
+  int _currentValue = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,7 @@ class __IntegerExampleState extends State<_IntegerExample> {
           maxValue: 100,
           onChanged: (value) => setState(() => _currentValue = value),
         ),
-        Text('Current value: $_currentValue'),
+        Text('Current Tickets Selected: $_currentValue'),
         ElevatedButton(
             onPressed: () {
               return showDialog(
