@@ -8,7 +8,7 @@ class SecondRoute extends StatelessWidget {
       appBar: AppBar(
           backgroundColor: Colors.black87,
           title: Text("Purchase Tickets",
-              style: TextStyle(color: Colors.yellowAccent))),
+              style: TextStyle(color: Colors.orangeAccent))),
       body: _IntegerExample(),
     );
   }
@@ -20,7 +20,7 @@ class _IntegerExample extends StatefulWidget {
 }
 
 class __IntegerExampleState extends State<_IntegerExample> {
-  int _currentValue = 0;
+  int _currentValue = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class __IntegerExampleState extends State<_IntegerExample> {
         Image(image: AssetImage('assets/images/map.png')),
         NumberPicker(
           value: _currentValue,
-          minValue: 0,
+          minValue: 1,
           maxValue: 100,
           onChanged: (value) => setState(() => _currentValue = value),
         ),
