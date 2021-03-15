@@ -6,7 +6,9 @@ class SecondRoute extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: Colors.black87, title: Text("Purchase Tickets")),
+          backgroundColor: Colors.black87,
+          title: Text("Purchase Tickets",
+              style: TextStyle(color: Colors.yellowAccent))),
       body: _IntegerExample(),
     );
   }
@@ -25,7 +27,7 @@ class __IntegerExampleState extends State<_IntegerExample> {
     return Center(
         child: Column(
       children: <Widget>[
-        Image(image: AssetImage('assets/images/logo_full.png')),
+        Image(image: AssetImage('assets/images/map.png')),
         NumberPicker(
           value: _currentValue,
           minValue: 0,
@@ -39,7 +41,8 @@ class __IntegerExampleState extends State<_IntegerExample> {
                 context: context,
                 builder: (ctx) => AlertDialog(
                   title: Text("Confirm Ticket Purchase"),
-                  content: Text("Are you sure you want to purchase?"),
+                  content: Text(
+                      "Are you sure you want to purchase $_currentValue tickets?"),
                   actions: <Widget>[
                     // ignore: deprecated_member_use
                     FlatButton(

@@ -10,9 +10,9 @@ class TicketLoggedIn extends StatelessWidget {
         appBar: AppBar(
             backgroundColor: Colors.black87,
             title: Text(
-              "Crypto King",
+              "0xLOTTO",
               style: TextStyle(
-                color: Colors.yellowAccent,
+                color: Colors.orangeAccent,
               ),
             )),
         body: Center(

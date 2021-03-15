@@ -1,3 +1,4 @@
+import 'package:crypto_king/gameInfo.dart';
 import 'package:flutter/material.dart';
 import 'package:crypto_king/buytickets.dart';
 import 'package:crypto_king/ticketstats.dart';
@@ -10,23 +11,12 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.`
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: '0xLOTTO',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        //this is a note
-        primarySwatch: Colors.blue,
+        primaryColor: Colors.blue,
       ),
       home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
@@ -42,8 +32,15 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  //Home page for app
   int _counter = 0;
-  final tickets = ['Your Owned Tickets', '0001', '0002', '0003', '0004'];
+  final tickets = [
+    'Your Owned Tickets',
+    '0001',
+    '0002',
+    '0003',
+    '0004'
+  ]; //temp tickets
 
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -53,13 +50,13 @@ class _MyHomePageState extends State<MyHomePage> {
               appBar: AppBar(
                 backgroundColor: Colors.black87,
                 title: Text(
-                  "Crypto King",
+                  "0xLOTTO",
                   style: TextStyle(
-                    color: Colors.yellowAccent,
+                    color: Colors.orangeAccent,
                   ),
                 ),
               ),
-              bottomNavigationBar: menu(),
+              bottomNavigationBar: menu(), // display bottom menu.
               body: TabBarView(
                 children: [
                   Container(
@@ -67,7 +64,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     children: [
                       new Container(
                           child: Column(children: [
-                        Image(image: AssetImage('assets/images/logo_full.png')),
+                        Image(
+                            image: AssetImage('assets/images/map.png'),
+                            height: 100),
                         Text('Previous Lottery Winning Ticket:',
                             style: TextStyle(
                               fontSize: 25,
@@ -96,7 +95,8 @@ class _MyHomePageState extends State<MyHomePage> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => SecondRoute()));
+                                    builder: (context) =>
+                                        SecondRoute())); //Take us to buy tickets
                           },
                           child: Text('Buy Tickets'),
                         ),
@@ -110,7 +110,8 @@ class _MyHomePageState extends State<MyHomePage> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => TicketLoggedIn()));
+                                    builder: (context) =>
+                                        TicketLoggedIn())); //Take us to Licket logged in state.
                           },
                           child: Text('Login'),
                         ),
@@ -123,7 +124,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   Container(
                       child: Column(
                     children: [
-                      new Container(
+                      Container(
                           child: Column(children: <Widget>[
                         Text(
                             'To view your tickets for this lottery please log into your crypto wallet by going to the wallet tab. Login functionality to come.'),
@@ -132,7 +133,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           child: Text('Login'),
                         ),
                       ])),
-                      new Container(
+                      Container(
                           child: Column(children: <Widget>[
                         Text(
                             'Prof Rogers - to view what a user would see when they are actually logged in, click the button below.'),
@@ -150,22 +151,23 @@ class _MyHomePageState extends State<MyHomePage> {
                     ],
                   )),
                   Container(
-                      height: 30,
-                      child: Column(children: <Widget>[
-                        Image(
-                            image: AssetImage('assets/images/WALLETLINK.png')),
-                        ElevatedButton(
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => ConnectedWallet()));
-                          },
-                          child: Text('Login'),
-                        ),
-                        Text(
-                            'Prof. Rogers, please click this Login button to see what a Logged in state would appear as. We are currently working on the functionality of switching states.'),
-                      ])),
+                      child: ListView(children: <Widget>[
+                    // height: 30,
+                    Column(children: <Widget>[
+                      Image(image: AssetImage('assets/images/WALLETLINK.png')),
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ConnectedWallet()));
+                        },
+                        child: Text('Login'),
+                      ),
+                      Text(
+                          'Prof. Rogers, please click this Login button to see what a Logged in state would appear as. We are currently working on the functionality of switching states.'),
+                    ])
+                  ])),
                   Container(
                       child: ListView(
                     children: <Widget>[
@@ -219,7 +221,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => SecondRoute()));
+                                      builder: (context) => GameInfo()));
                             },
                             child: Column(
                               crossAxisAlignment:
@@ -230,16 +232,17 @@ class _MyHomePageState extends State<MyHomePage> {
                                     topLeft: Radius.circular(8.0),
                                     topRight: Radius.circular(8.0),
                                   ),
-                                  child: Image.network(
-                                      'https://placeimg.com/640/480/any',
+                                  child: Image(
+                                      image:
+                                          AssetImage('assets/images/map.png'),
                                       // width: 300,
                                       height: 150,
                                       fit: BoxFit.fill),
                                 ),
                                 ListTile(
                                   title: Text('How the Game Works'),
-                                  subtitle:
-                                      Text('Click here to learn more about '),
+                                  subtitle: Text(
+                                      'Click here to learn more about the Crypto King\'s Lottery'),
                                 ),
                               ],
                             ),
@@ -269,15 +272,17 @@ class _MyHomePageState extends State<MyHomePage> {
                                     topLeft: Radius.circular(8.0),
                                     topRight: Radius.circular(8.0),
                                   ),
-                                  child: Image.network(
-                                      'https://placeimg.com/640/480/any',
+                                  child: Image(
+                                      image: AssetImage(
+                                          'assets/images/cImage.png'),
                                       // width: 300,
                                       height: 150,
                                       fit: BoxFit.fill),
                                 ),
                                 ListTile(
                                   title: Text('Crypto Wallet Info'),
-                                  subtitle: Text('Learn more about Wallets'),
+                                  subtitle:
+                                      Text('Learn more about Crypto Wallets'),
                                 ),
                               ],
                             ),
@@ -295,11 +300,11 @@ class _MyHomePageState extends State<MyHomePage> {
     return Container(
       color: Colors.black87,
       child: TabBar(
-        labelColor: Colors.white,
-        unselectedLabelColor: Colors.yellowAccent,
+        labelColor: Colors.orangeAccent[75],
+        unselectedLabelColor: Colors.orangeAccent,
         indicatorSize: TabBarIndicatorSize.tab,
         indicatorPadding: EdgeInsets.all(5.0),
-        indicatorColor: Colors.yellowAccent,
+        indicatorColor: Colors.orangeAccent,
         tabs: [
           Tab(
             text: "Lottery",

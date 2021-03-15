@@ -9,11 +9,11 @@ class ConnectedWallet extends StatelessWidget {
             backgroundColor: Colors.black87,
             title: Text("Wallet Login",
                 style: TextStyle(
-                  color: Colors.yellowAccent,
+                  color: Colors.orangeAccent,
                 ))),
         body: Center(
           child: Column(children: <Widget>[
-            Image(image: AssetImage('assets/images/logo_full.png')),
+            Image(image: AssetImage('assets/images/map.png')),
             Text(
                 'This page represents what a sucessfully connected wallet will look like. When a wallet is connected successfully, the WALLET tab will look like the following:'),
             Text('Wallet ID: 0x898923Hhdkhsas'),
@@ -28,7 +28,6 @@ class ConnectedWallet extends StatelessWidget {
               },
               child: Text('Purchase More Tickets'),
             ),
-            Image(image: AssetImage('assets/images/logo.png'))
           ]),
         ));
   }

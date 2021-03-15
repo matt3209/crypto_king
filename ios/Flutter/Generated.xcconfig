@@ -1,6 +1,6 @@
 // This is a generated file; do not edit or check into version control.
-FLUTTER_ROOT=C:\devtools\flutter
-FLUTTER_APPLICATION_PATH=C:\devprojects\crypto_king
+FLUTTER_ROOT=C:\Dev Tools\flutter
+FLUTTER_APPLICATION_PATH=C:\DevProjects\crypto_king
 FLUTTER_TARGET=lib\main.dart
 FLUTTER_BUILD_DIR=build
 SYMROOT=${SOURCE_ROOT}/../build\ios
