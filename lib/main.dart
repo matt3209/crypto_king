@@ -6,6 +6,10 @@ import 'package:crypto_king/cryptoinfo.dart';
 import 'package:crypto_king/walletlogin.dart';
 import 'package:crypto_king/loggedintickets.dart';
 
+// Ryan Geisler
+// Hunter Hass
+// Matt Heider
+
 void main() {
   runApp(MyApp());
 }
@@ -18,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: '0xLOTTO'),
     );
   }
 }
@@ -32,7 +36,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  //Home page for app
   int _counter = 0;
   final tickets = [
     'Your Owned Tickets',
@@ -40,7 +43,9 @@ class _MyHomePageState extends State<MyHomePage> {
     '0002',
     '0003',
     '0004'
-  ]; //temp tickets
+  ]; // These are an array of user tickets. This is temporary
+  // simply to show for GUI purposes. These tickets will populate
+  // automatically from a database upon implementation.
 
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -62,8 +67,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   Container(
                       child: new Column(
                     children: [
+                      // container for the 'Lottery' Tab in the nav bar
+                      // this is the 'Home' page for the app
                       new Container(
                           child: Column(children: [
+                        // main logo image for the home page
                         Image(
                             image: AssetImage('assets/images/map.png'),
                             height: 100),
@@ -89,14 +97,17 @@ class _MyHomePageState extends State<MyHomePage> {
                             'Once the last ticket is bought, the lottery will be drawn',
                             style: TextStyle(fontSize: 20)),
                       ])),
+
+                      // this container and the next takes the user to purchase tickets on button click
+                      // this button will ONLY be here if a user is logged in. if a user is
+                      // NOT logged in, the button will be a login button (2nd container below)
                       new Container(
                         child: ElevatedButton(
                           onPressed: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) =>
-                                        SecondRoute())); //Take us to buy tickets
+                                    builder: (context) => SecondRoute()));
                           },
                           child: Text('Buy Tickets'),
                         ),
@@ -104,6 +115,9 @@ class _MyHomePageState extends State<MyHomePage> {
                       new Container(
                           child: Text(
                               'The BUY TICKETS button will only be here if a user IS logged in. Login functionality to come.')),
+
+                      // when a user is not logged in, this is the button that will appear, allowing
+                      // the user to login to their wallet.
                       new Container(
                         child: ElevatedButton(
                           onPressed: () {
@@ -121,6 +135,11 @@ class _MyHomePageState extends State<MyHomePage> {
                               'The LOGIN button will only be here if a user IS NOT logged in. When clicked, this takes you to the wallet login. Login functionality to come.')),
                     ],
                   )),
+
+                  // this container holds the 'Tickets' tab information.
+                  // if a user is logged in, they will see their list of owned tickets.
+                  // if a user is NOT logged in, they will have the option to click a login button
+                  // that takes them to the wallet login page.
                   Container(
                       child: Column(
                     children: [
@@ -150,11 +169,17 @@ class _MyHomePageState extends State<MyHomePage> {
                       ])),
                     ],
                   )),
+
+                  // this is the container for the 'Wallet' tab. This tab will allow a user
+                  // to login to their crypto wallet. Currently, the 'WalletConnect' screen
+                  // is ONLY AN IMAGE. On the backend we need to make this a connected API.
                   Container(
                       child: ListView(children: <Widget>[
-                    // height: 30,
                     Column(children: <Widget>[
                       Image(image: AssetImage('assets/images/WALLETLINK.png')),
+
+                      // Clicking the login button below is an example of what the user will see
+                      // when their wallet is connected.
                       ElevatedButton(
                         onPressed: () {
                           Navigator.push(
@@ -168,9 +193,16 @@ class _MyHomePageState extends State<MyHomePage> {
                           'Prof. Rogers, please click this Login button to see what a Logged in state would appear as. We are currently working on the functionality of switching states.'),
                     ])
                   ])),
+
+                  // this is the container for the 'App Info' tab. this tab holds three different
+                  // informational cards. card 1 talks about the ticket data, card 2 explains the game,
+                  // and card 3 explains how wallets work and we offer pointers on how to create a
+                  // wallet and connect a wallet.
                   Container(
                       child: ListView(
                     children: <Widget>[
+                      // this is the container for the first card - 'Ticket Sales Data'
+                      // when a user clicks this card they can learn more about the tickets sold
                       Container(
                         margin: EdgeInsets.all(8.0),
                         child: Card(
@@ -210,6 +242,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                         ),
                       ),
+
+                      // this is the container for the second card - 'How the Game Works'
+                      // when a user clicks this card they can learn more about how our game works
                       Container(
                         margin: EdgeInsets.all(8.0),
                         child: Card(
@@ -224,8 +259,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                       builder: (context) => GameInfo()));
                             },
                             child: Column(
-                              crossAxisAlignment:
-                                  CrossAxisAlignment.stretch, // add this
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: <Widget>[
                                 ClipRRect(
                                   borderRadius: BorderRadius.only(
@@ -235,7 +269,6 @@ class _MyHomePageState extends State<MyHomePage> {
                                   child: Image(
                                       image:
                                           AssetImage('assets/images/map.png'),
-                                      // width: 300,
                                       height: 150,
                                       fit: BoxFit.fill),
                                 ),
@@ -249,6 +282,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                         ),
                       ),
+
+                      // this is the container for the third card - 'Crypto Wallet Info'
+                      // when a user clicks this card they can learn more about the tickets sold
                       Container(
                         margin: EdgeInsets.all(8.0),
                         child: Card(
@@ -264,8 +300,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                           CryptoWalletInfo()));
                             },
                             child: Column(
-                              crossAxisAlignment:
-                                  CrossAxisAlignment.stretch, // add this
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: <Widget>[
                                 ClipRRect(
                                   borderRadius: BorderRadius.only(
@@ -275,7 +310,6 @@ class _MyHomePageState extends State<MyHomePage> {
                                   child: Image(
                                       image: AssetImage(
                                           'assets/images/cImage.png'),
-                                      // width: 300,
                                       height: 150,
                                       fit: BoxFit.fill),
                                 ),
@@ -296,6 +330,8 @@ class _MyHomePageState extends State<MyHomePage> {
             )));
   }
 
+  // this widget build the bottom navigation bar
+  // we use orange to match our logo color for the buttons
   Widget menu() {
     return Container(
       color: Colors.black87,
