@@ -8,7 +8,7 @@ class SecondRoute extends StatelessWidget {
       appBar: AppBar(
           backgroundColor: Colors.black87,
           title: Text("Purchase Tickets",
-              style: TextStyle(color: Colors.yellowAccent))),
+              style: TextStyle(color: Colors.orangeAccent))),
       body: _IntegerExample(),
     );
   }
@@ -20,7 +20,7 @@ class _IntegerExample extends StatefulWidget {
 }
 
 class __IntegerExampleState extends State<_IntegerExample> {
-  int _currentValue = 3;
+  int _currentValue = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -28,13 +28,20 @@ class __IntegerExampleState extends State<_IntegerExample> {
         child: Column(
       children: <Widget>[
         Image(image: AssetImage('assets/images/map.png')),
+
+        // this is a discrete number selected for tickets sold. currently
+        // we only allow the purchase of maximum 100 tickets, with a minimum of
+        // 1 ticket needed to purchase.
         NumberPicker(
           value: _currentValue,
-          minValue: 0,
+          minValue: 1,
           maxValue: 100,
           onChanged: (value) => setState(() => _currentValue = value),
         ),
-        Text('Current value: $_currentValue'),
+        Text('Current Ticket Amount: $_currentValue'),
+
+        // our ticket purchase has confirmation. upon a users selecting 'Purchase'
+        // they will be prompted if they want to complete the purchase.
         ElevatedButton(
             onPressed: () {
               return showDialog(
@@ -44,6 +51,9 @@ class __IntegerExampleState extends State<_IntegerExample> {
                   content: Text(
                       "Are you sure you want to purchase $_currentValue tickets?"),
                   actions: <Widget>[
+                    // a user can chose to 'Cancel' their purchase before finalizing
+                    // if they do this we return them to the purchase tickets page
+
                     // ignore: deprecated_member_use
                     FlatButton(
                       onPressed: () {
@@ -51,6 +61,12 @@ class __IntegerExampleState extends State<_IntegerExample> {
                       },
                       child: Text("Cancel"),
                     ),
+
+                    // if a user decides to complete their purchase, they can click confirm.
+                    // when a user confirms their purchase we let them know if it was successful
+                    // if it was successful, we return them to the app screen they accessed
+                    // purchase tickets from
+
                     // ignore: deprecated_member_use
                     FlatButton(
                       onPressed: () {
@@ -61,6 +77,7 @@ class __IntegerExampleState extends State<_IntegerExample> {
                             content: Text(
                                 'You have purchased $_currentValue tickets.'),
                             actions: <Widget>[
+                              // ignore: deprecated_member_use
                               FlatButton(
                                 onPressed: () {
                                   Navigator.of(ctx).pop();
