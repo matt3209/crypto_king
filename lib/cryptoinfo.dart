@@ -16,7 +16,8 @@ class CryptoWalletInfo extends StatelessWidget {
           )),
       body: Center(
         child: Column(children: <Widget>[
-          //Text on crypto wallet info with image.
+          // Text on crypto wallet info with image. We will update this
+          // section upon release.
           Image(image: AssetImage('assets/images/map.png')),
           Text(
               'In here we will explain to the user how to setup and login with their crypto wallet. How we will be utilizing their wallet ID\'s within our app.',
