@@ -6,6 +6,10 @@ import 'package:crypto_king/cryptoinfo.dart';
 import 'package:crypto_king/walletlogin.dart';
 import 'package:crypto_king/loggedintickets.dart';
 
+// Ryan Geisler
+// Hunter Hass
+// Matt Heider
+
 void main() {
   runApp(MyApp());
 }
