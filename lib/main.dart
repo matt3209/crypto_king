@@ -171,7 +171,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   // is ONLY AN IMAGE. On the backend we need to make this a connected API.
                   Container(
                       child: ListView(children: <Widget>[
-                    // height: 30,
                     Column(children: <Widget>[
                       Image(image: AssetImage('assets/images/WALLETLINK.png')),
 
@@ -256,8 +255,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                       builder: (context) => GameInfo()));
                             },
                             child: Column(
-                              crossAxisAlignment:
-                                  CrossAxisAlignment.stretch, // add this
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: <Widget>[
                                 ClipRRect(
                                   borderRadius: BorderRadius.only(
@@ -267,7 +265,6 @@ class _MyHomePageState extends State<MyHomePage> {
                                   child: Image(
                                       image:
                                           AssetImage('assets/images/map.png'),
-                                      // width: 300,
                                       height: 150,
                                       fit: BoxFit.fill),
                                 ),
@@ -299,8 +296,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                           CryptoWalletInfo()));
                             },
                             child: Column(
-                              crossAxisAlignment:
-                                  CrossAxisAlignment.stretch, // add this
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: <Widget>[
                                 ClipRRect(
                                   borderRadius: BorderRadius.only(
