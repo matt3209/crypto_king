@@ -14,6 +14,8 @@ class TicketStats extends StatelessWidget {
           )),
       body: Center(
         child: Column(children: <Widget>[
+          // Image of dots that will show user purchased and available tickets.
+          // Will help show user statistics on chances of them winning based off tickets owned.
           Image(image: AssetImage('assets/images/dots.png')),
           Text(
               'We will have similar graphics like this that will show the users statistical data about the lottery. (For example the graphic above would show number tickets available vs sold.)',

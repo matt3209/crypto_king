@@ -4,6 +4,9 @@ import 'package:crypto_king/buytickets.dart';
 class ConnectedWallet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // this section holds the user's wallet information. there are multiple
+    // fields that will return info regarding the wallet status, tickets owned,
+    // how much money they've spent, and the number of lotteries participated.
     return Scaffold(
         appBar: AppBar(
             backgroundColor: Colors.black87,
@@ -13,7 +16,9 @@ class ConnectedWallet extends StatelessWidget {
                 ))),
         body: Center(
           child: Column(children: <Widget>[
-            Image(image: AssetImage('assets/images/map.png')),
+            Image(
+                image: AssetImage(
+                    'assets/images/map.png')), //Text that displays user's wallet info, money spent, tickets owned.
             Text(
                 'This page represents what a sucessfully connected wallet will look like. When a wallet is connected successfully, the WALLET tab will look like the following:'),
             Text('Wallet ID: 0x898923Hhdkhsas'),
@@ -28,6 +33,14 @@ class ConnectedWallet extends StatelessWidget {
               },
               child: Text('Purchase More Tickets'),
             ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text('Logout'),
+            ),
+            Text(
+                'The logout functionality will be coming soon, but when a user logs out it will take them back to the wallet login page. Click it to take you there.'),
           ]),
         ));
   }

@@ -37,13 +37,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-  final tickets = [
-    'Your Owned Tickets',
-    '0001',
-    '0002',
-    '0003',
-    '0004'
-  ]; // These are an array of user tickets. This is temporary
+  final tickets = ['Your Owned Tickets', '0001', '0002', '0003', '0004'];
+  // These are an array of user tickets. This is temporary
   // simply to show for GUI purposes. These tickets will populate
   // automatically from a database upon implementation.
 
@@ -121,11 +116,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       new Container(
                         child: ElevatedButton(
                           onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        TicketLoggedIn())); //Take us to Licket logged in state.
+                            // This button will be for login function.
                           },
                           child: Text('Login'),
                         ),

@@ -14,7 +14,8 @@ class GameInfo extends StatelessWidget {
           )),
       body: Center(
         child: Column(children: <Widget>[
-          //Text on game info page.
+          // Text on game info page.
+          // Will help the user understand how the game works.
           Image(image: AssetImage('assets/images/map.png')),
           Text(
               'We will have images and paragraphs to help the user understand how the game works.',
