@@ -1,12 +1,13 @@
 // This is a generated file; do not edit or check into version control.
-FLUTTER_ROOT=C:\Dev Tools\flutter
-FLUTTER_APPLICATION_PATH=C:\DevProjects\crypto_king
-FLUTTER_TARGET=lib\main.dart
+FLUTTER_ROOT=/Users/ryangeisler/Developer/flutter
+FLUTTER_APPLICATION_PATH=/Users/ryangeisler/Documents/Computer Science UWO/CS344 Mobile App Development/Final Project/crypto_king
+FLUTTER_TARGET=/Users/ryangeisler/Documents/Computer Science UWO/CS344 Mobile App Development/Final Project/crypto_king/lib/main.dart
 FLUTTER_BUILD_DIR=build
-SYMROOT=${SOURCE_ROOT}/../build\ios
+SYMROOT=${SOURCE_ROOT}/../build/ios
 FLUTTER_BUILD_NAME=1.0.0
 FLUTTER_BUILD_NUMBER=1
+DART_DEFINES=flutter.inspector.structuredErrors%3Dtrue
 DART_OBFUSCATION=false
-TRACK_WIDGET_CREATION=false
+TRACK_WIDGET_CREATION=true
 TREE_SHAKE_ICONS=false
-PACKAGE_CONFIG=.packages
+PACKAGE_CONFIG=/Users/ryangeisler/Documents/Computer Science UWO/CS344 Mobile App Development/Final Project/crypto_king/.dart_tool/package_config.json
