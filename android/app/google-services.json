@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "960717601765",
+    "project_id": "xlotto-ce21d",
+    "storage_bucket": "xlotto-ce21d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:960717601765:android:0613d7195bf8e6f8410d0c",
+        "android_client_info": {
+          "package_name": "com.example.crypto_king"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "960717601765-9n0605fe0av9tda6gtfbmdaj6ntl205a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrtzT4yptLFHYvjXylkC31FJBVP8ctw14"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "960717601765-9n0605fe0av9tda6gtfbmdaj6ntl205a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
