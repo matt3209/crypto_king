@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:numberpicker/numberpicker.dart';
 
@@ -7,7 +9,7 @@ class SecondRoute extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Colors.black87,
-          title: Text("Purchase Tickets",
+          title: Text("Get Tickets",
               style: TextStyle(color: Colors.orangeAccent))),
       body: _IntegerExample(),
     );
@@ -21,6 +23,7 @@ class _IntegerExample extends StatefulWidget {
 
 class __IntegerExampleState extends State<_IntegerExample> {
   int _currentValue = 1;
+  var _currentUID = FirebaseAuth.instance.currentUser.uid;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +38,7 @@ class __IntegerExampleState extends State<_IntegerExample> {
         NumberPicker(
           value: _currentValue,
           minValue: 1,
-          maxValue: 100,
+          maxValue: 5,
           onChanged: (value) => setState(() => _currentValue = value),
         ),
         Text('Current Ticket Amount: $_currentValue'),
@@ -49,7 +52,7 @@ class __IntegerExampleState extends State<_IntegerExample> {
                 builder: (ctx) => AlertDialog(
                   title: Text("Confirm Ticket Purchase"),
                   content: Text(
-                      "Are you sure you want to purchase $_currentValue tickets?"),
+                      "Are you sure you want to acquire $_currentValue tickets?"),
                   actions: <Widget>[
                     // a user can chose to 'Cancel' their purchase before finalizing
                     // if they do this we return them to the purchase tickets page
@@ -75,12 +78,12 @@ class __IntegerExampleState extends State<_IntegerExample> {
                           builder: (ctx) => AlertDialog(
                             title: Text('Success!'),
                             content: Text(
-                                'You have purchased $_currentValue tickets.'),
+                                'You have acquired $_currentValue tickets.'),
                             actions: <Widget>[
                               // ignore: deprecated_member_use
                               FlatButton(
                                 onPressed: () {
-                                  Navigator.of(ctx).pop();
+                                  _buyTickets();
                                   Navigator.of(ctx).pop();
                                   Navigator.of(ctx).pop();
                                 },
@@ -90,14 +93,32 @@ class __IntegerExampleState extends State<_IntegerExample> {
                           ),
                         );
                       },
-                      child: Text("Purchase"),
+                      child: Text("Get Tickets"),
                     ),
                   ],
                 ),
               );
             },
-            child: Text('Purchase')),
+            child: Text('Get Tickets')),
       ],
     ));
+  }
+
+  _buyTickets() async {
+    CollectionReference tickets =
+        FirebaseFirestore.instance.collection('tickets');
+
+    DocumentSnapshot currentIndex = await tickets.doc('number').get();
+    int index = currentIndex['index'];
+
+    var _currentUID = FirebaseAuth.instance.currentUser.uid;
+    CollectionReference users = FirebaseFirestore.instance.collection('users');
+
+    for (int i = index; i < index + _currentValue; i++) {
+      await users.doc(_currentUID).update({
+        'Ticket List': FieldValue.arrayUnion([i])
+      });
+      await tickets.doc('number').update({'index': i});
+    }
   }
 }

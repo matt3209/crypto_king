@@ -5,16 +5,9 @@ class LotteryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          backgroundColor: Colors.black87,
-          title: Text(
-            "0xLOTTO",
-            style: TextStyle(
-              color: Colors.orangeAccent,
-            ),
-          )),
       body: Center(
-        child: Container(
+          child: ListView(children: [
+        Container(
             child: new Column(
           children: [
             // container for the 'Lottery' Tab in the nav bar
@@ -53,15 +46,15 @@ class LotteryPage extends StatelessWidget {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => SecondRoute()));
                 },
-                child: Text('Buy Tickets'),
+                child: Text('Get Tickets'),
               ),
             ),
             new Container(
                 child: Text(
-                    'The BUY TICKETS button will only be here if a user IS logged in. Login functionality to come.')),
+                    'The GET TICKETS button will only be here if a user IS logged in. Login functionality to come.')),
           ],
         )),
-      ),
+      ])),
     );
   }
 }

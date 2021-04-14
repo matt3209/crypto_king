@@ -1,3 +1,4 @@
+import 'package:crypto_king/signUp.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -62,7 +63,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 primary: Colors.orangeAccent, // background
                 onPrimary: Colors.black, // foreground
               ),
-              onPressed: () => _signUp(_email, _password),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => SignUpScreen()));
+              },
               child: Text('Sign up'))
         ])
       ],
