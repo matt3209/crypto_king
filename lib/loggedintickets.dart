@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:crypto_king/buytickets.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class TicketLoggedIn extends StatelessWidget {
   // this array will become dynamic for each user. for now, we wanted to show
   // you what a user would view when they are logged in. these are the tickets
   // that would display a user 'owns'.
   final tickets = ['Your Owned Tickets', '0001', '0002', '0003', '0004'];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +29,8 @@ class TicketLoggedIn extends StatelessWidget {
               itemCount: tickets.length,
               itemBuilder: (context, index) {
                 return ListTile(
-                  title: Text(tickets[index]), //Displaying tickets user owns.
+                  title: Text(tickets[index]
+                      .toString()), //Displaying tickets user owns.
                 );
               },
               separatorBuilder: (context, index) {
@@ -52,4 +54,17 @@ class TicketLoggedIn extends StatelessWidget {
           ],
         ))));
   }
+/*
+  _getUserTickets() async {
+    var _currentUID = FirebaseAuth.instance.currentUser.uid;
+
+    CollectionReference users = FirebaseFirestore.instance.collection('users');
+    DocumentSnapshot userlist = await users.doc(_currentUID).get();
+
+    List<int> buckets = List.castFrom(userlist['Tickets List']);
+    print(buckets);
+
+    return buckets;
+  }
+  */
 }

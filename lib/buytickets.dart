@@ -22,9 +22,13 @@ class _IntegerExample extends StatefulWidget {
 }
 
 class __IntegerExampleState extends State<_IntegerExample> {
+  final int totalTickets = 100;
   int _currentValue = 1;
-  var _currentUID = FirebaseAuth.instance.currentUser.uid;
-
+  int counter = 0;
+  //var _currentUID = FirebaseAuth.instance.currentUser.uid;
+  //
+  //
+  //
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -73,17 +77,17 @@ class __IntegerExampleState extends State<_IntegerExample> {
                     // ignore: deprecated_member_use
                     FlatButton(
                       onPressed: () {
+                        _buyTickets();
                         return showDialog(
                           context: context,
                           builder: (ctx) => AlertDialog(
                             title: Text('Success!'),
-                            content: Text(
-                                'You have acquired $_currentValue tickets.'),
+                            content:
+                                Text('You have acquired $counter tickets.'),
                             actions: <Widget>[
                               // ignore: deprecated_member_use
                               FlatButton(
                                 onPressed: () {
-                                  _buyTickets();
                                   Navigator.of(ctx).pop();
                                   Navigator.of(ctx).pop();
                                 },
@@ -113,12 +117,12 @@ class __IntegerExampleState extends State<_IntegerExample> {
 
     var _currentUID = FirebaseAuth.instance.currentUser.uid;
     CollectionReference users = FirebaseFirestore.instance.collection('users');
-
-    for (int i = index; i < index + _currentValue; i++) {
+    for (int i = index; i < totalTickets && i < index + _currentValue; i++) {
       await users.doc(_currentUID).update({
         'Ticket List': FieldValue.arrayUnion([i])
       });
       await tickets.doc('number').update({'index': i});
+      counter++;
     }
   }
 }

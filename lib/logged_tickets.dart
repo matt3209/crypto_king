@@ -12,15 +12,6 @@ class LotteryTickets extends StatelessWidget {
         Container(
             child: Column(children: <Widget>[
           Text(
-              'To view your tickets for this lottery please log into your crypto wallet by going to the wallet tab. Login functionality to come.'),
-          ElevatedButton(
-            onPressed: () {},
-            child: Text('Login'),
-          ),
-        ])),
-        Container(
-            child: Column(children: <Widget>[
-          Text(
               'Prof Rogers - to view what a user would see when they are actually logged in, click the button below.'),
           ElevatedButton(
             onPressed: () {

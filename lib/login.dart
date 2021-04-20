@@ -86,6 +86,7 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
+/*
   _signUp(String _email, String _password) async {
     try {
       await auth.createUserWithEmailAndPassword(
@@ -98,4 +99,5 @@ class _LoginScreenState extends State<LoginScreen> {
       Fluttertoast.showToast(msg: error.message, gravity: ToastGravity.TOP);
     }
   }
+ */
 }
