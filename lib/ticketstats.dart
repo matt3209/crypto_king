@@ -1,27 +1,57 @@
 import 'package:flutter/material.dart';
+import 'package:fl_chart/fl_chart.dart';
+import 'package:crypto_king/indicators_widget.dart';
+import 'package:crypto_king/pie_chart_sections.dart';
 
-class TicketStats extends StatelessWidget {
+class TicketStats extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => PieChartPageState();
+}
+
+class PieChartPageState extends State {
+  int touchedIndex;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          backgroundColor: Colors.black87,
-          title: Text(
-            "0xLOTTO",
-            style: TextStyle(
-              color: Colors.orangeAccent,
+        appBar: AppBar(
+            backgroundColor: Colors.black87,
+            title: Text(
+              "0xLOTTO",
+              style: TextStyle(
+                color: Colors.orangeAccent,
+              ),
+            )),
+        body: Center(
+          child: Column(children: <Widget>[
+            Expanded(
+              child: PieChart(
+                PieChartData(
+                  pieTouchData: PieTouchData(
+                    touchCallback: (pieTouchResponse) {
+                      setState(() {
+                        if (pieTouchResponse.touchInput is FlLongPressEnd ||
+                            pieTouchResponse.touchInput is FlPanEnd) {
+                          touchedIndex = -1;
+                        } else {
+                          touchedIndex = pieTouchResponse.touchedSectionIndex;
+                        }
+                      });
+                    },
+                  ),
+                  borderData: FlBorderData(show: false),
+                  sectionsSpace: 0,
+                  centerSpaceRadius: 40,
+                  sections: getSections(touchedIndex),
+                ),
+              ),
             ),
-          )),
-      body: Center(
-        child: Column(children: <Widget>[
-          // Image of dots that will show user purchased and available tickets.
-          // Will help show user statistics on chances of them winning based off tickets owned.
-          Image(image: AssetImage('assets/images/dots.png')),
-          Text(
-              'We will have similar graphics like this that will show the users statistical data about the lottery. (For example the graphic above would show number tickets available vs sold.)',
-              style: TextStyle(fontSize: 18))
-        ]),
-      ),
-    );
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              Padding(
+                padding: const EdgeInsets.all(16),
+                child: IndicatorsWidget(),
+              )
+            ]),
+          ]),
+        ));
   }
 }

@@ -1,60 +1,115 @@
 import 'package:crypto_king/buytickets.dart';
 import 'package:flutter/material.dart';
+import 'package:fl_chart/fl_chart.dart';
+import 'package:crypto_king/indicators_widget.dart';
+import 'package:crypto_king/pie_chart_sections.dart';
 
-class LotteryPage extends StatelessWidget {
+class LotteryPage extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => PieChartPageState();
+}
+
+class PieChartPageState extends State<LotteryPage> {
+  int touchedIndex;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-          child: ListView(children: [
-        Container(
-            child: new Column(
-          children: [
-            // container for the 'Lottery' Tab in the nav bar
-            // this is the 'Home' page for the app
-            new Container(
-                child: Column(children: [
-              // main logo image for the home page
-              Image(image: AssetImage('assets/images/map.png'), height: 100),
-              Text('Previous Lottery Winning Ticket:',
-                  style: TextStyle(
-                    fontSize: 25,
-                  )),
-              Text(
-                '#1111',
-                style: TextStyle(fontSize: 40),
+      body: ListView(
+        children: <Widget>[
+          Column(
+            children: <Widget>[
+              Container(
+                child: Image(
+                    image: AssetImage('assets/images/map.png'), height: 100),
               ),
-              Text('Enjoy Your Prize', style: TextStyle(fontSize: 25)),
-              Text(
-                'Current Lottery:',
-                style: TextStyle(fontSize: 35),
+              Container(
+                child: Text('Previous Lottery Winning Ticket:',
+                    style: TextStyle(
+                      fontSize: 25,
+                    )),
               ),
-              Text(
-                '20 Tickets Left for Sale',
-                style: TextStyle(fontSize: 35),
-              ),
-              Text('Once the last ticket is bought, the lottery will be drawn',
-                  style: TextStyle(fontSize: 20)),
-            ])),
-
-            // this container and the next takes the user to purchase tickets on button click
-            // this button will ONLY be here if a user is logged in. if a user is
-            // NOT logged in, the button will be a login button (2nd container below)
-            new Container(
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => SecondRoute()));
-                },
-                child: Text('Get Tickets'),
-              ),
-            ),
-            new Container(
+              Container(
+                height: 200.0,
+                width: 200.0,
                 child: Text(
-                    'The GET TICKETS button will only be here if a user IS logged in. Login functionality to come.')),
-          ],
-        )),
-      ])),
+                    'Hellodfdddddddddddddddddddddddddddddddddddddddddddddddddd'),
+              ),
+              Container(
+                height: 200.0,
+                width: 200.0,
+                child: Text('Hello'),
+              ),
+              Container(
+                child: Column(children: <Widget>[
+                  PieChart(
+                    PieChartData(
+                      pieTouchData: PieTouchData(
+                        touchCallback: (pieTouchResponse) {
+                          setState(() {
+                            if (pieTouchResponse.touchInput is FlLongPressEnd ||
+                                pieTouchResponse.touchInput is FlPanEnd) {
+                              touchedIndex = -1;
+                            } else {
+                              touchedIndex =
+                                  pieTouchResponse.touchedSectionIndex;
+                            }
+                          });
+                        },
+                      ),
+                      borderData: FlBorderData(show: false),
+                      sectionsSpace: 0,
+                      centerSpaceRadius: 40,
+                      sections: getSections(touchedIndex),
+                    ),
+                  ),
+                  Row(children: [
+                    Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: IndicatorsWidget(),
+                    )
+                  ]),
+                ]),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
+
+
+//         child: Column(children: <Widget>[
+//           Expanded(
+//             child: PieChart(
+//               PieChartData(
+//                 pieTouchData: PieTouchData(
+//                   touchCallback: (pieTouchResponse) {
+//                     setState(() {
+//                       if (pieTouchResponse.touchInput is FlLongPressEnd ||
+//                           pieTouchResponse.touchInput is FlPanEnd) {
+//                         touchedIndex = -1;
+//                       } else {
+//                         touchedIndex = pieTouchResponse.touchedSectionIndex;
+//                       }
+//                     });
+//                   },
+//                 ),
+//                 borderData: FlBorderData(show: false),
+//                 sectionsSpace: 0,
+//                 centerSpaceRadius: 40,
+//                 sections: getSections(touchedIndex),
+//               ),
+//             ),
+//           ),
+//           Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+//             Padding(
+//               padding: const EdgeInsets.all(16),
+//               child: IndicatorsWidget(),
+//             )
+//           ]),
+//         ]),
+//       ),
+//     );
+//   }
+// }

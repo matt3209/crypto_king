@@ -8,6 +8,24 @@ class TicketLoggedIn extends StatelessWidget {
   // you what a user would view when they are logged in. these are the tickets
   // that would display a user 'owns'.
   final tickets = ['Your Owned Tickets', '0001', '0002', '0003', '0004'];
+
+  Future<dynamic> _getUserTickets() async {
+    //CollectionReference tickets =
+    //FirebaseFirestore.instance.collection('tickets');
+
+    //DocumentSnapshot currentIndex = await tickets.doc('number').get();
+    //int index = currentIndex['index'];
+
+    var _currentUID = FirebaseAuth.instance.currentUser.uid;
+
+    CollectionReference users = FirebaseFirestore.instance.collection('users');
+    DocumentSnapshot userlist = await users.doc(_currentUID).get();
+
+    List buckets = userlist['Ticket List'];
+
+    return buckets;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,20 +43,20 @@ class TicketLoggedIn extends StatelessWidget {
           children: [
             // list of user tickets starts here.
             new Container(
-                child: ListView.separated(
-              itemCount: tickets.length,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(tickets[index]
-                      .toString()), //Displaying tickets user owns.
-                );
-              },
-              separatorBuilder: (context, index) {
-                return Divider(
-                  color: Colors.black,
-                );
-              },
-            )),
+                child: FutureBuilder(
+                    future: _getUserTickets(),
+                    builder: (context, snapshot) {
+                      if (snapshot.data != null) {
+                        return ListView.builder(
+                            itemCount: snapshot.data.length,
+                            itemBuilder: (context, index) {
+                              return ListTile(
+                                title: Text(snapshot.data[index].toString()),
+                              );
+                            });
+                      }
+                      return Container(child: Text('loading...'));
+                    })),
 
             // this is a button to allow the user to purchase more tickets
             new Container(
@@ -54,17 +72,16 @@ class TicketLoggedIn extends StatelessWidget {
           ],
         ))));
   }
-/*
-  _getUserTickets() async {
-    var _currentUID = FirebaseAuth.instance.currentUser.uid;
 
-    CollectionReference users = FirebaseFirestore.instance.collection('users');
-    DocumentSnapshot userlist = await users.doc(_currentUID).get();
+  // _getUserTickets() async {
+  //   var _currentUID = FirebaseAuth.instance.currentUser.uid;
 
-    List<int> buckets = List.castFrom(userlist['Tickets List']);
-    print(buckets);
+  //   CollectionReference users = FirebaseFirestore.instance.collection('users');
+  //   DocumentSnapshot userlist = await users.doc(_currentUID).get();
 
-    return buckets;
-  }
-  */
+  //   List<int> buckets = List.castFrom(userlist['Tickets List']);
+  //   print(buckets);
+
+  //   return buckets;
+
 }
