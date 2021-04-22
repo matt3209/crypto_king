@@ -12,24 +12,31 @@ class GameInfo extends StatelessWidget {
               color: Colors.orangeAccent,
             ),
           )),
-      body: Center(
-        child: Column(children: <Widget>[
-          // Text on game info page.
-          // Will help the user understand how the game works.
-          Image(image: AssetImage('assets/images/map.png')),
-          Text(
-              'We will have images and paragraphs to help the user understand how the game works.',
-              style: TextStyle(fontSize: 18)),
-          Text(
-              'The game consists of users logging in with crypto wallet that they already have made. They will then buy tickets with USD Crypto Coin not USD Dollar.',
-              style: TextStyle(fontSize: 18)),
-          Text(
-              'After all of the lottery tickets are bought we will generate a random win based on a random ticket being chosen.',
-              style: TextStyle(fontSize: 18)),
-          Text(
-              'The winning lottery ticket winner will then be awarded USD coin which would be half the pot and also a custom NFT from us.',
-              style: TextStyle(fontSize: 18))
-        ]),
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          children: [
+            Image(image: AssetImage('assets/images/map.png')),
+            Container(
+              padding: EdgeInsets.only(bottom: 20),
+              child: Text(
+                  'Blockchain technology has solidified itself in our world. We at OxLOTTO understand this new technology and all its terms – cryptocurrency, coins, Non-Fungible Tokens (NFT) , HODL, among many others – can feel overwhelming. Our apps intention is to provide a free, safe environment to help users learn more about crypto and in the process, they might win a custom NFT to celebrate their new endeavor into cryptocurrency and the blockchain. Here’s how it works:',
+                  textAlign: TextAlign.justify),
+            ),
+            Container(
+              padding: EdgeInsets.only(bottom: 20),
+              child: Text(
+                  'Users sign up to join OxLOTTO with an email, some personal details, and a cryptocurrency wallet address. This address is the crucial piece in the lottery. Each “lottery”, users can acquire up to five (5) tickets each. Once all the tickets have been claimed, the lucky lottery ticket number is drawn. Whoever owns the winning ticket is then sent an NFT to their crypto wallet!',
+                  textAlign: TextAlign.justify),
+            ),
+            Container(
+              padding: EdgeInsets.only(bottom: 20),
+              child: Text(
+                  'It really is that simple. Signup, play for free, and earn a shot at an NFT. Thanks for using the OxLOTTO app – have fun, and good luck!',
+                  textAlign: TextAlign.justify),
+            ),
+          ],
+        ),
       ),
     );
   }
