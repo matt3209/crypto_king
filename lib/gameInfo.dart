@@ -20,7 +20,7 @@ class GameInfo extends StatelessWidget {
             Container(
               padding: EdgeInsets.only(bottom: 20),
               child: Text(
-                  'Blockchain technology has solidified itself in our world. We at OxLOTTO understand this new technology and all its terms – cryptocurrency, coins, Non-Fungible Tokens (NFT) , HODL, among many others – can feel overwhelming. Our apps intention is to provide a free, safe environment to help users learn more about crypto and in the process, they might win a custom NFT to celebrate their new endeavor into cryptocurrency and the blockchain. Here’s how it works:',
+                  'Blockchain technology has solidified itself in our world. We at OxLOTTO understand this new technology and all its terms – cryptocurrency, coins, Non-Fungible Tokens (NFT) , HODL, among many others – can feel overwhelming. Our app\'s intention is to provide a free, safe environment to help users learn more about crypto, and in the process, offer them a chance to win a custom NFT to celebrate their new endeavor into cryptocurrency and the blockchain. Here’s how it works:',
                   textAlign: TextAlign.justify),
             ),
             Container(
