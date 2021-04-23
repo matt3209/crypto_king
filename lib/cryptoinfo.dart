@@ -28,13 +28,14 @@ class CryptoWalletInfo extends StatelessWidget {
               Container(
                 padding: EdgeInsets.only(bottom: 20),
                 child: Text(
-                    'Crypto wallets are a way for you to store your private keys – passwords that give you access to your digital assets on the blockchain – in an extremely safe place. From this wallet, you can send and receive digital assets that are on the blockchain. ',
+                    'Crypto wallets are a way for you to store your private keys – passwords that give you access to your digital assets on the blockchain – in an extremely safe place. From this wallet, you can send and receive digital assets that are on the blockchain. Below are our top three recommended wallets to get started.',
                     textAlign: TextAlign.justify),
               ),
 
               // COINBASE WALLET CARD START
               Card(
-                elevation: 10,
+                color: Colors.orange[200],
+                elevation: 5,
                 shadowColor: Colors.orange,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
@@ -61,7 +62,8 @@ class CryptoWalletInfo extends StatelessWidget {
 
               //GEMINI WALLET START
               Card(
-                elevation: 10,
+                color: Colors.orange[200],
+                elevation: 5,
                 shadowColor: Colors.orange,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
@@ -88,7 +90,8 @@ class CryptoWalletInfo extends StatelessWidget {
 
               // BINANCE START
               Card(
-                elevation: 10,
+                color: Colors.orange[200],
+                elevation: 5,
                 shadowColor: Colors.orange,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
@@ -96,7 +99,7 @@ class CryptoWalletInfo extends StatelessWidget {
                     const ListTile(
                       title: Text('Binance'),
                       subtitle: Text(
-                          'Beginners and experts both will enjoy Binance.'),
+                          'Beginners and experts alike will enjoy Binance.'),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
