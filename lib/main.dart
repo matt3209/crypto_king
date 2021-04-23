@@ -119,8 +119,8 @@ class _MyHomePageState extends State<MyHomePage> {
             icon: Icon(Icons.assignment),
           ),
           Tab(
-            text: "Wallet",
-            icon: Icon(Icons.account_balance_wallet),
+            text: "My Profile",
+            icon: Icon(Icons.face),
           ),
           Tab(
             text: "App Info",

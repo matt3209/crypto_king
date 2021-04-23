@@ -55,7 +55,8 @@ class TicketLoggedIn extends StatelessWidget {
                               );
                             });
                       }
-                      return Container(child: Text('loading...'));
+                      return Container(
+                          child: Text('Loading your list of tickets...'));
                     })),
 
             // this is a button to allow the user to purchase more tickets
@@ -66,7 +67,7 @@ class TicketLoggedIn extends StatelessWidget {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => SecondRoute()));
                 },
-                child: Text('Buy Tickets'),
+                child: Text('Get More Tickets'),
               ),
             )
           ],

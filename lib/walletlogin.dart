@@ -1,5 +1,9 @@
+import 'package:crypto_king/login.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:crypto_king/buytickets.dart';
+
+FirebaseAuth auth = FirebaseAuth.instance;
 
 class ConnectedWallet extends StatelessWidget {
   @override
@@ -35,7 +39,7 @@ class ConnectedWallet extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                Navigator.pop(context);
+                _signOut();
               },
               child: Text('Logout'),
             ),
@@ -43,5 +47,10 @@ class ConnectedWallet extends StatelessWidget {
                 'The logout functionality will be coming soon, but when a user logs out it will take them back to the wallet login page. Click it to take you there.'),
           ]),
         ));
+  }
+
+  Future<void> _signOut() async {
+    await auth.signOut();
+    return LoginScreen();
   }
 }
