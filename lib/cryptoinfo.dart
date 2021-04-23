@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+const urlCoinbase = 'https://www.coinbase.com/';
+const urlGemini = 'https://www.gemini.com/';
+const urlBinance = 'https://www.binance.com/en';
 
 class CryptoWalletInfo extends StatelessWidget {
   Widget build(BuildContext context) {
@@ -9,21 +14,121 @@ class CryptoWalletInfo extends StatelessWidget {
       appBar: AppBar(
           backgroundColor: Colors.black87,
           title: Text(
-            "Wallet Info",
+            "Crypto Wallet Information",
             style: TextStyle(
               color: Colors.orangeAccent,
             ),
           )),
-      body: Center(
-        child: Column(children: <Widget>[
-          // Text on crypto wallet info with image. We will update this
-          // section upon release.
-          Image(image: AssetImage('assets/images/map.png')),
-          Text(
-              'In here we will explain to the user how to setup and login with their crypto wallet. How we will be utilizing their wallet ID\'s within our app.',
-              style: TextStyle(fontSize: 18)),
+      body: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: ListView(children: [
+          Column(
+            children: [
+              Image(image: AssetImage('assets/images/map.png')),
+              Container(
+                padding: EdgeInsets.only(bottom: 20),
+                child: Text(
+                    'Crypto wallets are a way for you to store your private keys – passwords that give you access to your digital assets on the blockchain – in an extremely safe place. From this wallet, you can send and receive digital assets that are on the blockchain. ',
+                    textAlign: TextAlign.justify),
+              ),
+
+              // COINBASE WALLET CARD START
+              Card(
+                elevation: 10,
+                shadowColor: Colors.orange,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    const ListTile(
+                      title: Text('Coinbase'),
+                      subtitle: Text('Most Popular: Easy for all users.'),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: <Widget>[
+                        TextButton(
+                          onPressed: () {
+                            _launchURL(urlCoinbase);
+                          },
+                          child: const Text('Get Wallet'),
+                        ),
+                        const SizedBox(width: 8),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+
+              //GEMINI WALLET START
+              Card(
+                elevation: 10,
+                shadowColor: Colors.orange,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    const ListTile(
+                      title: Text('Gemini'),
+                      subtitle: Text('An excellent solution for new users.'),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: <Widget>[
+                        TextButton(
+                          child: const Text('Get Wallet'),
+                          onPressed: () {
+                            _launchURL(urlGemini);
+                          },
+                        ),
+                        const SizedBox(width: 8),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+
+              // BINANCE START
+              Card(
+                elevation: 10,
+                shadowColor: Colors.orange,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    const ListTile(
+                      title: Text('Binance'),
+                      subtitle: Text(
+                          'Beginners and experts both will enjoy Binance.'),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: <Widget>[
+                        TextButton(
+                          child: const Text('Get Wallet'),
+                          onPressed: () {
+                            _launchURL(urlBinance);
+                          },
+                        ),
+                        const SizedBox(width: 8),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          )
         ]),
       ),
     );
+  }
+
+  void _launchURL(url) async {
+    if (await canLaunch(url)) {
+      await launch(
+        url,
+        forceSafariVC: true,
+        enableJavaScript: true,
+      );
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }
