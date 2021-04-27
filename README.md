@@ -2,9 +2,10 @@
 # 0xLotto
 Ethereum based lotto system
 =======
-# crypto_king
+# oxLotto
 
-A new Flutter project.
+A new Flutter project.That uses and wishes to inform people about Crypto and play a fun 
+free lottery game. 
 
 ## Getting Started
 
