@@ -23,6 +23,9 @@ _getIndexHelper() async {
 double getSecureValue() {
   double test = _getIndex();
   return test;
+
+Thihoiahishdihaiohfioashiofhaidhsfoihaioshdf
+
 }
 */
 
