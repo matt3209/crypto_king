@@ -35,11 +35,6 @@ class PieChartPageState extends State<LotteryPage> {
                     'Hellodfdddddddddddddddddddddddddddddddddddddddddddddddddd'),
               ),
               Container(
-                height: 200.0,
-                width: 200.0,
-                child: Text('Hello'),
-              ),
-              Container(
                 child: Column(children: <Widget>[
                   PieChart(
                     PieChartData(
@@ -77,7 +72,6 @@ class PieChartPageState extends State<LotteryPage> {
     );
   }
 }
-
 
 //         child: Column(children: <Widget>[
 //           Expanded(

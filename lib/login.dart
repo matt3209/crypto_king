@@ -28,7 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
           padding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
           child: TextField(
               keyboardType: TextInputType.emailAddress,
-              decoration: InputDecoration(hintText: 'Emaillll'),
+              decoration: InputDecoration(hintText: 'Email'),
               onChanged: (value) {
                 setState(() {
                   //setting email state
