@@ -32,7 +32,7 @@ class PieChartPageState extends State<LotteryPage> {
                 height: 200.0,
                 width: 200.0,
                 child: Text(
-                    'Hellodfdddddddddddddddddddddddddddddddddddddd'),
+                    'Hello'),
               ),
               Container(
                 child: Column(children: <Widget>[
