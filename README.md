@@ -5,7 +5,7 @@ Ethereum based lotto system
 # oxLotto
 
 A new Flutter project.That uses and wishes to inform people about Crypto and play a fun 
-free lottery game. 
+free lottery game. This game is free to play, and we welcome any improvements. 
 
 ## Getting Started
 
