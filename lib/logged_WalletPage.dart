@@ -35,27 +35,3 @@ class WalletPage extends StatelessWidget {
     );
   }
 }
-
-/*StreamBuilder(
-        stream: FirebaseFirestore.instance.collection('users').snapshots(),
-        builder: (context, snapshot) {
-          return ListView.builder(
-            itemCount: 1
-            itemBuilder: (_, index){
-              DocumentSnapshot user = snapshot.data.documents[_currentUID];
-              return Container(child: 
-              Column(children: [
-                Text(user['Ethereum']),
-                Text(user['First Name']),
-                Text(user['Last name']),
-           */
-
-// void updateUserInfo() {
-//    var user = FirebaseAuth.instance.currentUser;
-//    user.updateProfile(displayName: "Abel", photoURL: "photoPath").then((value){
-//       print("Profile has been changed successfully");
-//       //DO Other compilation here if you want to like setting the state of the app
-//    }).catchError((e){
-//       print("There was an error updating profile");
-//    });
-//  }
