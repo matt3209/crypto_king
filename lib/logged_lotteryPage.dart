@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:crypto_king/indicators_widget.dart';
 import 'package:crypto_king/pie_chart_sections.dart';
-
+//This is the pie page
 class LotteryPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => PieChartPageState();
