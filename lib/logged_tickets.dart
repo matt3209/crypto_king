@@ -12,7 +12,7 @@ class LotteryTickets extends StatelessWidget {
         Container(
             child: Column(children: <Widget>[
           Text(
-              'Prof Rogers - to view what a user would see when they are actually logged in, click the button below.'),
+              'Dog'),
           ElevatedButton(
             onPressed: () {
               Navigator.push(context,
