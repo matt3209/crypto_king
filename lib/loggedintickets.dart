@@ -32,7 +32,7 @@ class TicketLoggedIn extends StatelessWidget {
         appBar: AppBar(
             backgroundColor: Colors.black87,
             title: Text(
-              "0xLOTTO",
+              "Your Tickets",
               style: TextStyle(
                 color: Colors.orangeAccent,
               ),
@@ -50,8 +50,19 @@ class TicketLoggedIn extends StatelessWidget {
                         return ListView.builder(
                             itemCount: snapshot.data.length,
                             itemBuilder: (context, index) {
-                              return ListTile(
-                                title: Text(snapshot.data[index].toString()),
+                              return Card(
+                                color: Colors.orange[200],
+                                elevation: 5,
+                                shadowColor: Colors.orange,
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: <Widget>[
+                                    ListTile(
+                                      title: Text('Ticket Number: ' +
+                                          snapshot.data[index].toString()),
+                                    ),
+                                  ],
+                                ),
                               );
                             });
                       }
@@ -67,7 +78,7 @@ class TicketLoggedIn extends StatelessWidget {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => SecondRoute()));
                 },
-                child: Text('Get More Tickets'),
+                child: Text('Get Tickets'),
               ),
             )
           ],

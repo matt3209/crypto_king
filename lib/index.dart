@@ -1,0 +1,1 @@
+int globalIndex = 0;

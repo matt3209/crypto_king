@@ -1,43 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:numberpicker/numberpicker.dart';
-
-//double index = _getIndexHelper();
-/*
-_getIndex() async {
-  CollectionReference tickets =
-      FirebaseFirestore.instance.collection('tickets');
-
-  DocumentSnapshot currentIndex = await tickets.doc('number').get();
-  var indexOne = currentIndex['index'];
-  //await Future.wait(index);
-  return indexOne;
-}
-
-_getIndexHelper() async {
-  int whatever = await _getIndex();
-  return whatever;
-}
-
-double getSecureValue() {
-  double test = _getIndex();
-  return test;
-}
-*/
-
-double getIndex() {
-  double currIndex = 10;
-  return currIndex;
-}
+import 'package:crypto_king/index.dart';
 
 class PieData {
   static List<Data> data = [
     Data(
-        name: 'Purchased', percent: getIndex(), color: const Color(0xff0293ee)),
+        name: 'Purchased',
+        percent: globalIndex.toDouble(),
+        color: const Color(0xff0293ee)),
     Data(
         name: 'Remaining',
-        percent: (100.00 - getIndex()),
+        percent: (100.00 - globalIndex.toDouble()),
         color: const Color(0xfff8b250)),
   ];
 }

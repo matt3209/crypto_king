@@ -11,6 +11,8 @@ import 'package:crypto_king/cryptoinfo.dart';
 import 'package:crypto_king/walletlogin.dart';
 import 'package:crypto_king/loggedintickets.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:crypto_king/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 // Ryan Geisler
 // Hunter Hass
@@ -19,6 +21,13 @@ import 'package:firebase_core/firebase_core.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  
+  CollectionReference tickets =
+      FirebaseFirestore.instance.collection('tickets');
+
+  DocumentSnapshot currentIndex = await tickets.doc('number').get();
+  globalIndex = currentIndex['index'];
+  
   runApp(App());
 }
 
@@ -83,7 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   // if a user is logged in, they will see their list of owned tickets.
                   // if a user is NOT logged in, they will have the option to click a login button
                   // that takes them to the wallet login page.
-                  LotteryTickets(),
+                  TicketLoggedIn(),
                   // this is the container for the 'Wallet' tab. This tab will allow a user
                   // to login to their crypto wallet. Currently, the 'WalletConnect' screen
                   // is ONLY AN IMAGE. On the backend we need to make this a connected API.

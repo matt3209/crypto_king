@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:crypto_king/index.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:numberpicker/numberpicker.dart';
@@ -76,26 +77,48 @@ class __IntegerExampleState extends State<_IntegerExample> {
 
                     // ignore: deprecated_member_use
                     FlatButton(
-                      onPressed: () {
-                        _buyTickets();
-                        return showDialog(
-                          context: context,
-                          builder: (ctx) => AlertDialog(
-                            title: Text('Success!'),
-                            content:
-                                Text('You have acquired $counter tickets.'),
-                            actions: <Widget>[
-                              // ignore: deprecated_member_use
-                              FlatButton(
-                                onPressed: () {
-                                  Navigator.of(ctx).pop();
-                                  Navigator.of(ctx).pop();
-                                },
-                                child: Text("Return to App"),
-                              ),
-                            ],
-                          ),
-                        );
+                      onPressed: () async {
+                        List tickets = await _getUserTickets();
+                        if (tickets.length >= 5) {
+                          return showDialog(
+                            context: context,
+                            builder: (ctx) => AlertDialog(
+                              title: Text('Error'),
+                              content:
+                                  Text('You already have max tickets of 5'),
+                              actions: <Widget>[
+                                // ignore: deprecated_member_use
+                                FlatButton(
+                                  onPressed: () {
+                                    Navigator.of(ctx).pop();
+                                    Navigator.of(ctx).pop();
+                                  },
+                                  child: Text("Return to App"),
+                                ),
+                              ],
+                            ),
+                          );
+                        } else {
+                          _buyTickets();
+                          return showDialog(
+                            context: context,
+                            builder: (ctx) => AlertDialog(
+                              title: Text('Success!'),
+                              content:
+                                  Text('You have acquired $counter tickets.'),
+                              actions: <Widget>[
+                                // ignore: deprecated_member_use
+                                FlatButton(
+                                  onPressed: () {
+                                    Navigator.of(ctx).pop();
+                                    Navigator.of(ctx).pop();
+                                  },
+                                  child: Text("Return to App"),
+                                ),
+                              ],
+                            ),
+                          );
+                        }
                       },
                       child: Text("Get Tickets"),
                     ),
@@ -114,7 +137,6 @@ class __IntegerExampleState extends State<_IntegerExample> {
 
     DocumentSnapshot currentIndex = await tickets.doc('number').get();
     int index = currentIndex['index'];
-
     var _currentUID = FirebaseAuth.instance.currentUser.uid;
     CollectionReference users = FirebaseFirestore.instance.collection('users');
     for (int i = index; i < totalTickets && i < index + _currentValue; i++) {
@@ -123,6 +145,20 @@ class __IntegerExampleState extends State<_IntegerExample> {
       });
       await tickets.doc('number').update({'index': i});
       counter++;
+      setState(() {
+      globalIndex = index;
+    });
     }
+  }
+
+  Future<List> _getUserTickets() async {
+    var _currentUID = FirebaseAuth.instance.currentUser.uid;
+
+    CollectionReference users = FirebaseFirestore.instance.collection('users');
+    DocumentSnapshot userlist = await users.doc(_currentUID).get();
+
+    List buckets = userlist['Ticket List'];
+
+    return buckets;
   }
 }

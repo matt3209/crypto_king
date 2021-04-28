@@ -14,8 +14,13 @@ class AppInfoPage extends StatelessWidget {
         // this is the container for the first card - 'Ticket Sales Data'
         // when a user clicks this card they can learn more about the tickets sold
         Container(
+          child: Image(image: AssetImage('assets/images/map.png'), height: 150),
+        ),
+        Container(
           margin: EdgeInsets.all(8.0),
           child: Card(
+            elevation: 5,
+            shadowColor: Colors.orange,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(8.0))),
             child: InkWell(
@@ -38,6 +43,7 @@ class AppInfoPage extends StatelessWidget {
                         fit: BoxFit.fill),
                   ),
                   ListTile(
+                    tileColor: Colors.orange,
                     title: Text('Ticket Sales Data'),
                     subtitle: Text(
                         'Click here to learn more about the number of tickets sold and the number of tickets still available'),
@@ -53,6 +59,7 @@ class AppInfoPage extends StatelessWidget {
         Container(
           margin: EdgeInsets.all(8.0),
           child: Card(
+            elevation: 5,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(8.0))),
             child: InkWell(
@@ -74,6 +81,7 @@ class AppInfoPage extends StatelessWidget {
                         fit: BoxFit.fill),
                   ),
                   ListTile(
+                    tileColor: Colors.orange,
                     title: Text('How the Game Works'),
                     subtitle: Text(
                         'Click here to learn more about the Crypto King\'s Lottery'),
@@ -89,6 +97,8 @@ class AppInfoPage extends StatelessWidget {
         Container(
           margin: EdgeInsets.all(8.0),
           child: Card(
+            elevation: 5,
+            shadowColor: Colors.orange,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(8.0))),
             child: InkWell(
@@ -112,6 +122,7 @@ class AppInfoPage extends StatelessWidget {
                         fit: BoxFit.fill),
                   ),
                   ListTile(
+                    tileColor: Colors.orange,
                     title: Text('Crypto Wallet Info'),
                     subtitle: Text('Learn more about Crypto Wallets'),
                   ),
