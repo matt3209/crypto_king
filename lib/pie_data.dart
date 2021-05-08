@@ -11,11 +11,13 @@ double getIndex() {
   return currIndex;
 }
 
+
+
 class PieData {
   static List<Data> data = [
     Data(
         name: 'Purchased',
-        percent: globalIndex.toDouble(),
+        percent:  globalIndex.toDouble(),
         color: const Color(0xff0293ee)),
     Data(
         name: 'Remaining',

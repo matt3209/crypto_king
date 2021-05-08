@@ -21,13 +21,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  
+
   CollectionReference tickets =
       FirebaseFirestore.instance.collection('tickets');
 
   DocumentSnapshot currentIndex = await tickets.doc('number').get();
   globalIndex = currentIndex['index'];
-  
+
   runApp(App());
 }
 
@@ -65,7 +65,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-  final tickets = ['Your Owned Tickets', '0001', '0002', '0003', '0004'];
+  //final tickets = ['Your Owned Tickets', '0001', '0002', '0003', '0004'];
   // These are an array of user tickets. This is temporary
   // simply to show for GUI purposes. These tickets will populate
   // automatically from a database upon implementation.
