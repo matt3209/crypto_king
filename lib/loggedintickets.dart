@@ -60,6 +60,7 @@ class TicketLoggedIn extends StatelessWidget {
                                     ListTile(
                                       title: Text('Ticket Number: ' +
                                           snapshot.data[index].toString()),
+                                        
                                     ),
                                   ],
                                 ),
@@ -72,28 +73,23 @@ class TicketLoggedIn extends StatelessWidget {
 
             // this is a button to allow the user to purchase more tickets
             new Container(
-              padding: const EdgeInsets.only(top: 515, right: 20.0, left: 300),
+              alignment: Alignment.center,
+              padding: const EdgeInsets.only(
+                top: 300,
+              ),
               child: ElevatedButton(
                 onPressed: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => SecondRoute()));
                 },
                 child: Text('Get Tickets'),
+                style: ElevatedButton.styleFrom(
+                  onPrimary: Colors.black, // background
+                  primary: Colors.orange, // foreground
+                ),
               ),
             )
           ],
         ))));
   }
-
-  // _getUserTickets() async {
-  //   var _currentUID = FirebaseAuth.instance.currentUser.uid;
-
-  //   CollectionReference users = FirebaseFirestore.instance.collection('users');
-  //   DocumentSnapshot userlist = await users.doc(_currentUID).get();
-
-  //   List<int> buckets = List.castFrom(userlist['Tickets List']);
-  //   print(buckets);
-
-  //   return buckets;
-
 }

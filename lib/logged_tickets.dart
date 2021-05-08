@@ -19,6 +19,9 @@ class LotteryTickets extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => TicketLoggedIn()));
             },
             child: Text('Logged-In User View'),
+            style: ElevatedButton.styleFrom(onPrimary: Colors.orangeAccent, // background
+          primary: Colors.black, // foreground
+          ),
           ),
           Image(image: AssetImage('assets/images/pie-chart.png'))
         ])),

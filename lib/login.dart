@@ -79,6 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
           email: _email, password: _password); //Sign in the user.
 
       //success
+      
       Navigator.of(context).pushReplacement(MaterialPageRoute(
           builder: (context) => MyHomePage())); // on success go to homescreen
     } on FirebaseAuthException catch (error) {

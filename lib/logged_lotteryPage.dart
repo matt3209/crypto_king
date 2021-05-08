@@ -1,6 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crypto_king/buytickets.dart';
+import 'package:crypto_king/gameInfo.dart';
 import 'package:crypto_king/index.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'dart:math';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:crypto_king/indicators_widget.dart';
 import 'package:crypto_king/pie_chart_sections.dart';
@@ -10,7 +14,18 @@ class LotteryPage extends StatefulWidget {
   State<StatefulWidget> createState() => PieChartPageState();
 }
 
+_buyTickets(int num) async {
+  CollectionReference tickets =
+      FirebaseFirestore.instance.collection('tickets');
+  //DocumentSnapshot currentIndex = await tickets.doc('number').get();
+
+  await tickets.doc('number').update({'Winning Ticket': num});
+}
+
 class PieChartPageState extends State<LotteryPage> {
+  var _currentUID = FirebaseAuth.instance.currentUser.uid;
+  var winningTicket = 0;
+  var currentIndex = 0;
   int touchedIndex;
   @override
   Widget build(BuildContext context) {
@@ -23,27 +38,74 @@ class PieChartPageState extends State<LotteryPage> {
                 child: Image(
                     image: AssetImage('assets/images/map.png'), height: 150),
               ),
+              Column(children: [
+                StreamBuilder(
+                    stream: FirebaseFirestore.instance
+                        .collection('tickets')
+                        .doc('number')
+                        .snapshots(),
+                    builder: (context, snapshot) {
+                      if (!snapshot.hasData) {
+                        return new Text("Loading");
+                      }
+                      var userDocument = snapshot.data;
+                      winningTicket = userDocument['Winning Ticket'];
+                      currentIndex = userDocument['index'];
+                      globalIndex = userDocument['index'];
+                      if (winningTicket == 0 && currentIndex >= 101) {
+                        Random random = new Random();
+                        winningTicket = random.nextInt(100) + 1;
+                        _buyTickets(winningTicket);
+                      }
+                      //return new Text(userDocument["First Name"]);
+                      return Column(children: [
+                        Text(
+                            winningTicket > 0
+                                ? "The winning ticket is: $winningTicket"
+                                : 'Tickets are still available',
+                            style: TextStyle(
+                                fontSize: 20.0, fontWeight: FontWeight.bold)),
+                        Text(
+                            winningTicket == 0
+                                ? "Tickets Available: ${101 - userDocument['index']}"
+                                : '',
+                            style: TextStyle(
+                                fontSize: 20.0, fontWeight: FontWeight.bold))
+                      ]);
+                    }),
+              ]),
               Container(
-                child: Text('Winning Ticket Number:',
-                    style: TextStyle(
-                      fontSize: 25,
-                    )),
-              ),
-              Container(
-                height: 50.0,
-                width: 200.0,
-                child: Text(
-                    globalIndex < 100
-                        ? 'Tickets still available!'
-                        : "Winner to Be announced",
-                    style: TextStyle(
-                      fontSize: 20,
-                    )),
-              ),
-              Container(
-                padding: EdgeInsets.all(30),
+                padding: EdgeInsets.all(15),
                 child: Image.network(
                     'https://media.giphy.com/media/l378khQxt68syiWJy/source.gif'),
+              ),
+              Container(
+                padding: EdgeInsets.all(2),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.orange,
+                    onPrimary: Colors.black,
+                  ),
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => SecondRoute()));
+                  },
+                  child: Text('Get Tickets'),
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.all(2),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.orange,
+                    onPrimary: Colors.black,
+                  ),
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => GameInfo()));
+                  },
+                  child: Text('How To Play The Game'),
+                ),
               ),
             ],
           ),
@@ -51,39 +113,12 @@ class PieChartPageState extends State<LotteryPage> {
       ),
     );
   }
-}
 
-//         child: Column(children: <Widget>[
-//           Expanded(
-//             child: PieChart(
-//               PieChartData(
-//                 pieTouchData: PieTouchData(
-//                   touchCallback: (pieTouchResponse) {
-//                     setState(() {
-//                       if (pieTouchResponse.touchInput is FlLongPressEnd ||
-//                           pieTouchResponse.touchInput is FlPanEnd) {
-//                         touchedIndex = -1;
-//                       } else {
-//                         touchedIndex = pieTouchResponse.touchedSectionIndex;
-//                       }
-//                     });
-//                   },
-//                 ),
-//                 borderData: FlBorderData(show: false),
-//                 sectionsSpace: 0,
-//                 centerSpaceRadius: 40,
-//                 sections: getSections(touchedIndex),
-//               ),
-//             ),
-//           ),
-//           Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-//             Padding(
-//               padding: const EdgeInsets.all(16),
-//               child: IndicatorsWidget(),
-//             )
-//           ]),
-//         ]),
-//       ),
-//     );
-//   }
-// }
+  Future<int> _getIndex() async {
+    CollectionReference tickets =
+        FirebaseFirestore.instance.collection('tickets');
+    DocumentSnapshot currentIndex = await tickets.doc('number').get();
+    int index = currentIndex['index'];
+    return index;
+  }
+}
