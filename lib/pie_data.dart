@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:crypto_king/index.dart';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:numberpicker/numberpicker.dart';
 
 double getIndex() {
   double currIndex = 10;
@@ -28,7 +25,7 @@ class PieData {
 
 class Data {
   final String name;
-  //double index  = _getIndex();
+
   final double percent;
 
   final Color color;

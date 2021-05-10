@@ -17,16 +17,19 @@ class LotteryPage extends StatefulWidget {
 _buyTickets(int num) async {
   CollectionReference tickets =
       FirebaseFirestore.instance.collection('tickets');
-  //DocumentSnapshot currentIndex = await tickets.doc('number').get();
 
   await tickets.doc('number').update({'Winning Ticket': num});
 }
 
+
+
 class PieChartPageState extends State<LotteryPage> {
   var _currentUID = FirebaseAuth.instance.currentUser.uid;
   var winningTicket = 0;
+  var winner = false;
   var currentIndex = 0;
   int touchedIndex;
+  var arrayTest = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,12 +59,13 @@ class PieChartPageState extends State<LotteryPage> {
                         Random random = new Random();
                         winningTicket = random.nextInt(100) + 1;
                         _buyTickets(winningTicket);
+                        // arraytest = _displayWinner(winningTicket);
                       }
                       //return new Text(userDocument["First Name"]);
                       return Column(children: [
                         Text(
                             winningTicket > 0
-                                ? "The winning ticket is: $winningTicket"
+                                ? "The winning ticket is: $winningTicket "
                                 : 'Tickets are still available',
                             style: TextStyle(
                                 fontSize: 20.0, fontWeight: FontWeight.bold)),
@@ -74,6 +78,36 @@ class PieChartPageState extends State<LotteryPage> {
                       ]);
                     }),
               ]),
+              Container(
+                  child: StreamBuilder(
+                      stream: FirebaseFirestore.instance
+                          .collection('users')
+                          .doc(_currentUID)
+                          .snapshots(),
+                      builder: (context, snapshot) {
+                        if (!snapshot.hasData) {
+                          return new Text("Loading");
+                        }
+
+                        if (winningTicket > 0 && currentIndex >= 101) {
+                          var dataValues = snapshot.data;
+                          arrayTest = dataValues['Ticket List'];
+                          arrayTest.forEach((value) {
+                            if (value == winningTicket) winner = true;
+                          });
+                        }
+                        //return new Text(userDocument["First Name"]);
+                        return Column(children: [
+                          Text(
+                              winningTicket == 0
+                                  ? ''
+                                  : winner
+                                      ? 'Game Over: You are the winner!'
+                                      : 'Game Over: You are not the winner.',
+                              style: TextStyle(
+                                  fontSize: 20.0, fontWeight: FontWeight.bold))
+                        ]);
+                      })),
               Container(
                 padding: EdgeInsets.all(15),
                 child: Image.network(

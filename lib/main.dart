@@ -1,14 +1,9 @@
-import 'package:crypto_king/gameInfo.dart';
+
 import 'package:crypto_king/logged_AppInfo.dart';
 import 'package:crypto_king/logged_WalletPage.dart';
 import 'package:crypto_king/logged_lotteryPage.dart';
-import 'package:crypto_king/logged_tickets.dart';
 import 'package:crypto_king/login.dart';
 import 'package:flutter/material.dart';
-import 'package:crypto_king/buytickets.dart';
-import 'package:crypto_king/ticketstats.dart';
-import 'package:crypto_king/cryptoinfo.dart';
-import 'package:crypto_king/walletlogin.dart';
 import 'package:crypto_king/loggedintickets.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:crypto_king/index.dart';
@@ -30,6 +25,7 @@ void main() async {
 
   runApp(App());
 }
+
 
 class App extends StatelessWidget {
   @override
@@ -64,11 +60,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-  //final tickets = ['Your Owned Tickets', '0001', '0002', '0003', '0004'];
-  // These are an array of user tickets. This is temporary
-  // simply to show for GUI purposes. These tickets will populate
-  // automatically from a database upon implementation.
 
   Widget build(BuildContext context) {
     return MaterialApp(

@@ -1,9 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
+import 'package:toast/toast.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:crypto_king/main.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -20,7 +18,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: ListView(
+        body: Container(
+          child: ListView(
       children: [
         Column(children: [
           Padding(
@@ -101,7 +100,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           ])
         ])
       ],
-    ));
+    )));
   }
 
   _signUp(String _email, String _password) async {
@@ -112,6 +111,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       var _currentUID = FirebaseAuth.instance.currentUser.uid;
 
       await users.doc(_currentUID).set({
+        'Winning Number': '',
         'Ethereum': _ethereum,
         'First Name': _firstName,
         'Last Name': _lastName,
@@ -122,7 +122,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
       Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (context) => MyHomePage()));
     } on FirebaseAuthException catch (error) {
-      Fluttertoast.showToast(msg: error.message, gravity: ToastGravity.TOP);
+      Toast.show(
+          error.message != null
+              ? error.message
+              : 'Make sure to enter an email and password',
+          context,
+          duration: Toast.LENGTH_SHORT,
+          gravity: Toast.TOP);
     }
   }
 }

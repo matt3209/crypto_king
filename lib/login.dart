@@ -1,7 +1,8 @@
 import 'package:crypto_king/signUp.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+//import 'package:fluttertoast/fluttertoast.dart';
+import 'package:toast/toast.dart';
 import 'package:crypto_king/main.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -79,26 +80,18 @@ class _LoginScreenState extends State<LoginScreen> {
           email: _email, password: _password); //Sign in the user.
 
       //success
-      
+
       Navigator.of(context).pushReplacement(MaterialPageRoute(
           builder: (context) => MyHomePage())); // on success go to homescreen
     } on FirebaseAuthException catch (error) {
-      Fluttertoast.showToast(msg: error.message, gravity: ToastGravity.TOP);
+      Toast.show(
+          error.message != null
+              ? error.message
+              : 'Make sure to enter an email and password',
+          context,
+          duration: Toast.LENGTH_SHORT,
+          gravity: Toast.TOP);
     }
   }
 
-/*
-  _signUp(String _email, String _password) async {
-    try {
-      await auth.createUserWithEmailAndPassword(
-          email: _email, password: _password); //create the user
-
-      //success
-      Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => MyHomePage()));
-    } on FirebaseAuthException catch (error) {
-      Fluttertoast.showToast(msg: error.message, gravity: ToastGravity.TOP);
-    }
-  }
- */
 }

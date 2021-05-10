@@ -10,11 +10,6 @@ class TicketLoggedIn extends StatelessWidget {
   final tickets = ['Your Owned Tickets', '0001', '0002', '0003', '0004'];
 
   Future<dynamic> _getUserTickets() async {
-    //CollectionReference tickets =
-    //FirebaseFirestore.instance.collection('tickets');
-
-    //DocumentSnapshot currentIndex = await tickets.doc('number').get();
-    //int index = currentIndex['index'];
 
     var _currentUID = FirebaseAuth.instance.currentUser.uid;
 
@@ -60,7 +55,6 @@ class TicketLoggedIn extends StatelessWidget {
                                     ListTile(
                                       title: Text('Ticket Number: ' +
                                           snapshot.data[index].toString()),
-                                        
                                     ),
                                   ],
                                 ),

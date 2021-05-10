@@ -5,23 +5,11 @@ import 'package:crypto_king/walletlogin.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-//var _currentUID = FirebaseAuth.instance.currentUser.uid;
-
-// Future<DocumentSnapshot> _getDocument(String uid) async {
-//   CollectionReference users = FirebaseFirestore.instance.collection('users');
-//   DocumentSnapshot userlist = await users.doc(uid).get();
-//   return await userlist;
-// }
 
 class WalletPage extends StatelessWidget {
-
-
-  
   @override
   Widget build(BuildContext context) {
     var _currentUID = FirebaseAuth.instance.currentUser.uid;
-    //CollectionReference users = FirebaseFirestore.instance.collection('users');
-    final auth = FirebaseAuth.instance;
     return Scaffold(
         body: ListView(children: [
       Column(children: [
@@ -76,13 +64,11 @@ class WalletPage extends StatelessWidget {
           child: ElevatedButton(
             child: Text('Logout User'),
             style: ElevatedButton.styleFrom(
-              onPrimary: Colors.orangeAccent, // background
-              primary: Colors.black, // foreground
+              onPrimary: Colors.black, // background
+              primary: Colors.orange, // foreground
             ),
             onPressed: () async {
               await _signOut(context); //signout user
-              // Navigator.of(context).pushReplacement(
-              //     MaterialPageRoute(builder: (context) => LoginScreen()));
             },
           ),
         )
@@ -96,11 +82,6 @@ class WalletPage extends StatelessWidget {
         MaterialPageRoute(builder: (context) => LoginScreen()));
   }
 
-//   Future<void> signOut() async {
-//    await auth.signOut().catchError((error){
-//        print(error.toString());
-//    });
-//    Navigator.push(context, MaterialPageRoute(builder: (context) => MyApp()));
-// }
+
 
 }

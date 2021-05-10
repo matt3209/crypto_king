@@ -30,10 +30,7 @@ class __IntegerExampleState extends State<_IntegerExample> {
   int _currentValue = 1;
   int counter = 0;
   int indexChecker = 0;
-  //var _currentUID = FirebaseAuth.instance.currentUser.uid;
-  //
-  //
-  //
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -59,7 +56,8 @@ class __IntegerExampleState extends State<_IntegerExample> {
             return showDialog(
               context: context,
               builder: (ctx) => AlertDialog(
-                title: Text("Confirm Ticket Purchase"),
+                title: Text("Confirm Ticket Purchase",
+                    style: TextStyle(color: Colors.black)),
                 content: Text(
                     "Are you sure you want to acquire $_currentValue tickets?"),
                 actions: <Widget>[
@@ -71,7 +69,8 @@ class __IntegerExampleState extends State<_IntegerExample> {
                     onPressed: () {
                       Navigator.of(ctx).pop();
                     },
-                    child: Text("Cancel"),
+                    child:
+                        Text("Cancel", style: TextStyle(color: Colors.black)),
                     color: Colors.orange,
                   ),
 
@@ -100,7 +99,10 @@ class __IntegerExampleState extends State<_IntegerExample> {
                                   Navigator.of(ctx).pop();
                                   Navigator.of(ctx).pop();
                                 },
-                                child: Text("Return to App"),
+                                child: Text(
+                                  "Return to App",
+                                  style: TextStyle(color: Colors.black),
+                                ),
                                 color: Colors.orange,
                               ),
                             ],
@@ -119,7 +121,8 @@ class __IntegerExampleState extends State<_IntegerExample> {
                                   Navigator.of(ctx).pop();
                                   Navigator.of(ctx).pop();
                                 },
-                                child: Text("Return to App"),
+                                child: Text("Return to App",
+                                    style: TextStyle(color: Colors.black)),
                                 color: Colors.orange,
                               ),
                             ],
@@ -140,7 +143,8 @@ class __IntegerExampleState extends State<_IntegerExample> {
                                   Navigator.of(ctx).pop();
                                   Navigator.of(ctx).pop();
                                 },
-                                child: Text("Return to App"),
+                                child: Text("Return to App",
+                                    style: TextStyle(color: Colors.black)),
                                 color: Colors.orange,
                               ),
                             ],
@@ -165,7 +169,8 @@ class __IntegerExampleState extends State<_IntegerExample> {
                                       MaterialPageRoute(
                                           builder: (context) => MyHomePage()));
                                 },
-                                child: Text("Return to App"),
+                                child: Text("Return to App",
+                                    style: TextStyle(color: Colors.black)),
                                 color: Colors.orange,
                               ),
                             ],
@@ -173,7 +178,8 @@ class __IntegerExampleState extends State<_IntegerExample> {
                         );
                       }
                     },
-                    child: Text("Get Tickets"),
+                    child: Text("Get Tickets",
+                        style: TextStyle(color: Colors.black)),
                     color: Colors.orange,
                   ),
                 ],
