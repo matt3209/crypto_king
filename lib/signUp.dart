@@ -111,7 +111,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
       var _currentUID = FirebaseAuth.instance.currentUser.uid;
 
       await users.doc(_currentUID).set({
-        'Winning Number': '',
         'Ethereum': _ethereum,
         'First Name': _firstName,
         'Last Name': _lastName,
