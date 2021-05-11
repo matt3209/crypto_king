@@ -1,9 +1,10 @@
 import 'package:crypto_king/signUp.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-//import 'package:fluttertoast/fluttertoast.dart';
 import 'package:toast/toast.dart';
 import 'package:crypto_king/main.dart';
+
+// login class to handle user logins.
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -19,12 +20,15 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
         body: Column(
       children: [
+        // LOGO
         Padding(
             padding: const EdgeInsets.fromLTRB(0, 75, 0, 0),
             child: Image(
               image: AssetImage('assets/images/map.png'),
               height: 300,
             )),
+
+        // EMAIL INPUT
         Padding(
           padding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
           child: TextField(
@@ -37,6 +41,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 });
               }),
         ),
+
+        // PASSWORD INPUT
         Padding(
           padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
           child: TextField(
@@ -50,6 +56,8 @@ class _LoginScreenState extends State<LoginScreen> {
             },
           ),
         ),
+
+        // SIGN UP BUTTON
         Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
           ElevatedButton(
             child: Text('Sign in'),
@@ -74,13 +82,13 @@ class _LoginScreenState extends State<LoginScreen> {
     ));
   }
 
+  // method to actually sign the user into the app.
   _signin(String _email, String _password) async {
     try {
       await auth.signInWithEmailAndPassword(
           email: _email, password: _password); //Sign in the user.
 
       //success
-
       Navigator.of(context).pushReplacement(MaterialPageRoute(
           builder: (context) => MyHomePage())); // on success go to homescreen
     } on FirebaseAuthException catch (error) {
@@ -93,5 +101,4 @@ class _LoginScreenState extends State<LoginScreen> {
           gravity: Toast.TOP);
     }
   }
-
 }

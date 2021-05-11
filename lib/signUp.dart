@@ -19,15 +19,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
-          child: ListView(
+            child: ListView(
       children: [
         Column(children: [
+          // LOGO BEGIN
           Padding(
               padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
               child: Image(
                 image: AssetImage('assets/images/map.png'),
                 height: 270,
               )),
+
+          // USER FIRST NAME INPUT
           Padding(
             padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
             child: TextField(
@@ -40,6 +43,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   });
                 }),
           ),
+
+          // USER LAST NAME INPUT
           Padding(
             padding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
             child: TextField(
@@ -52,6 +57,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   });
                 }),
           ),
+
+          // USER EMAIL INPUT
           Padding(
             padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
             child: TextField(
@@ -64,6 +71,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   });
                 }),
           ),
+
+          // USER PASSWORD INPUT
           Padding(
             padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
             child: TextField(
@@ -77,6 +86,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
               },
             ),
           ),
+
+          // USER ETHEREUM INPUT
           Padding(
             padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
             child: TextField(
@@ -89,6 +100,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   });
                 }),
           ),
+
+          // USER SIGNUP BUTTON
           Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
             ElevatedButton(
                 style: ElevatedButton.styleFrom(
@@ -103,6 +116,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     )));
   }
 
+  // method to help user sign up.
   _signUp(String _email, String _password) async {
     try {
       await auth.createUserWithEmailAndPassword(

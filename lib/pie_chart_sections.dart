@@ -2,6 +2,8 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:crypto_king/pie_data.dart';
 import 'package:flutter/material.dart';
 
+// builds the sections for the pie chart
+
 List<PieChartSectionData> getSections(int touchedIndex) => PieData.data
     .asMap()
     .map<int, PieChartSectionData>((index, data) {

@@ -1,6 +1,8 @@
 import 'package:crypto_king/pie_data.dart';
 import 'package:flutter/material.dart';
 
+// this class builds the pie chart.
+
 class IndicatorsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Column(
@@ -12,7 +14,6 @@ class IndicatorsWidget extends StatelessWidget {
                   child: buildIndicator(
                     color: data.color,
                     text: data.name,
-                    // isSquare: true,
                   )),
             )
             .toList(),

@@ -4,18 +4,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class TicketLoggedIn extends StatelessWidget {
-  // this array will become dynamic for each user. for now, we wanted to show
-  // you what a user would view when they are logged in. these are the tickets
-  // that would display a user 'owns'.
-  final tickets = ['Your Owned Tickets', '0001', '0002', '0003', '0004'];
-
+  // future to get the user tickets from the Firebase collection.
   Future<dynamic> _getUserTickets() async {
-
     var _currentUID = FirebaseAuth.instance.currentUser.uid;
-
     CollectionReference users = FirebaseFirestore.instance.collection('users');
     DocumentSnapshot userlist = await users.doc(_currentUID).get();
-
     List buckets = userlist['Ticket List'];
 
     return buckets;
@@ -37,6 +30,7 @@ class TicketLoggedIn extends StatelessWidget {
                 child: new Stack(
           children: [
             // list of user tickets starts here.
+            // user can see all of the tickets that they own.
             new Container(
                 child: FutureBuilder(
                     future: _getUserTickets(),

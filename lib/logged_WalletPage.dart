@@ -1,10 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crypto_king/login.dart';
-import 'package:crypto_king/main.dart';
-import 'package:crypto_king/walletlogin.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+// this page will show the user their information.
+// full name
+// ethereum address
+// tickets owned
+
+FirebaseAuth auth = FirebaseAuth.instance;
 
 class WalletPage extends StatelessWidget {
   @override
@@ -23,12 +27,14 @@ class WalletPage extends StatelessWidget {
                 return new Text("Loading");
               }
               var userDocument = snapshot.data;
-              //return new Text(userDocument["First Name"]);
               return Column(children: [
                 Container(
                   child: Image(
                       image: AssetImage('assets/images/map.png'), height: 200),
                 ),
+
+                // USER NAME START
+                // display the user name
                 Container(
                   margin: const EdgeInsets.all(5.0),
                   padding: const EdgeInsets.all(15.0),
@@ -39,6 +45,9 @@ class WalletPage extends StatelessWidget {
                       style: TextStyle(
                           fontSize: 20.0, fontWeight: FontWeight.bold)),
                 ),
+
+                // USER ADDRESS
+                // display the user ethereum address
                 Container(
                   margin: const EdgeInsets.all(5.0),
                   padding: const EdgeInsets.all(15.0),
@@ -48,6 +57,9 @@ class WalletPage extends StatelessWidget {
                       style: TextStyle(
                           fontSize: 20.0, fontWeight: FontWeight.bold)),
                 ),
+
+                // USER TICKETS OWNED
+                // display the tickets owned
                 Container(
                   margin: const EdgeInsets.all(5.0),
                   padding: const EdgeInsets.all(15.0),
@@ -60,12 +72,15 @@ class WalletPage extends StatelessWidget {
                 )
               ]);
             }),
+
+        // USER LOGOUT BUTTON
+        // display the logout button
         Center(
           child: ElevatedButton(
             child: Text('Logout User'),
             style: ElevatedButton.styleFrom(
-              onPrimary: Colors.black, // background
-              primary: Colors.orange, // foreground
+              onPrimary: Colors.black,
+              primary: Colors.orange,
             ),
             onPressed: () async {
               await _signOut(context); //signout user
@@ -76,12 +91,10 @@ class WalletPage extends StatelessWidget {
     ]));
   }
 
+  // method to logout the current user and return them to the login screen.
   _signOut(context) async {
     await auth.signOut();
     Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (context) => LoginScreen()));
   }
-
-
-
 }

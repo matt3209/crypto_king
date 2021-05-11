@@ -11,8 +11,8 @@ class AppInfoPage extends StatelessWidget {
             child: Container(
                 child: ListView(
       children: <Widget>[
-        // this is the container for the first card - 'Ticket Sales Data'
-        // when a user clicks this card they can learn more about the tickets sold
+        // this is the container for the first card - 'Ticket Sales Data'.
+        // when a user clicks this card they can learn more about the tickets sold.
         Container(
           child: Image(image: AssetImage('assets/images/map.png'), height: 150),
         ),

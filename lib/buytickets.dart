@@ -1,8 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crypto_king/index.dart';
-import 'package:crypto_king/logged_lotteryPage.dart';
 import 'package:crypto_king/main.dart';
-import 'package:crypto_king/pie_data.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:numberpicker/numberpicker.dart';
@@ -39,7 +37,7 @@ class __IntegerExampleState extends State<_IntegerExample> {
         Image(image: AssetImage('assets/images/map.png')),
 
         // this is a discrete number selected for tickets sold. currently
-        // we only allow the purchase of maximum 100 tickets, with a minimum of
+        // we only allow the purchase of maximum 5 tickets, with a minimum of
         // 1 ticket needed to purchase.
         NumberPicker(
           value: _currentValue,
@@ -86,6 +84,8 @@ class __IntegerExampleState extends State<_IntegerExample> {
                       indexChecker = await _getIndex();
                       int available = totalTickets + 1 - indexChecker;
                       if (indexChecker + _currentValue > 101) {
+                        // dialog box for if the user selects to purchase more tickets than
+                        // are available in the game.
                         return showDialog(
                           context: context,
                           builder: (ctx) => AlertDialog(
@@ -109,6 +109,7 @@ class __IntegerExampleState extends State<_IntegerExample> {
                           ),
                         );
                       } else if (tickets.length >= 5) {
+                        // dialog box for if the user already has the max of 5 tickets.
                         return showDialog(
                           context: context,
                           builder: (ctx) => AlertDialog(
@@ -130,6 +131,9 @@ class __IntegerExampleState extends State<_IntegerExample> {
                         );
                       } else if (tickets.length + _currentValue > 5) {
                         int checkTicket = 5 - tickets.length;
+
+                        // dialog box for if the user has selected a number of tickets
+                        // that will put them over the 5 ticket limit.
                         return showDialog(
                           context: context,
                           builder: (ctx) => AlertDialog(
@@ -152,6 +156,8 @@ class __IntegerExampleState extends State<_IntegerExample> {
                         );
                       } else {
                         await _buyTickets();
+
+                        // dialog box that tells the user how many tickets they've acquired.
                         return showDialog(
                           context: context,
                           builder: (ctx) => AlertDialog(
@@ -196,6 +202,8 @@ class __IntegerExampleState extends State<_IntegerExample> {
     ));
   }
 
+  // this allows the user to buy tickets and populates their document in
+  // the firebase collection
   _buyTickets() async {
     CollectionReference tickets =
         FirebaseFirestore.instance.collection('tickets');
@@ -215,6 +223,9 @@ class __IntegerExampleState extends State<_IntegerExample> {
     globalIndex = index - 1;
   }
 
+  // this method gets the index of the ticket that we are currently on.
+  // we are able to track which is the next ticket to issue by finding this
+  // index.
   Future<int> _getIndex() async {
     CollectionReference tickets =
         FirebaseFirestore.instance.collection('tickets');
@@ -223,6 +234,7 @@ class __IntegerExampleState extends State<_IntegerExample> {
     return index;
   }
 
+  // this gets the list of all the tickets the current user owns
   Future<List> _getUserTickets() async {
     var _currentUID = FirebaseAuth.instance.currentUser.uid;
 

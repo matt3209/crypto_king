@@ -1,4 +1,3 @@
-
 import 'package:crypto_king/logged_AppInfo.dart';
 import 'package:crypto_king/logged_WalletPage.dart';
 import 'package:crypto_king/logged_lotteryPage.dart';
@@ -26,7 +25,6 @@ void main() async {
   runApp(App());
 }
 
-
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -38,6 +36,7 @@ class App extends StatelessWidget {
   }
 }
 
+// APP THEME
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -60,7 +59,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   Widget build(BuildContext context) {
     return MaterialApp(
         home: DefaultTabController(

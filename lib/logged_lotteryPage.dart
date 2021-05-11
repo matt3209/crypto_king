@@ -5,9 +5,6 @@ import 'package:crypto_king/index.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
-import 'package:fl_chart/fl_chart.dart';
-import 'package:crypto_king/indicators_widget.dart';
-import 'package:crypto_king/pie_chart_sections.dart';
 
 class LotteryPage extends StatefulWidget {
   @override
@@ -20,8 +17,6 @@ _buyTickets(int num) async {
 
   await tickets.doc('number').update({'Winning Ticket': num});
 }
-
-
 
 class PieChartPageState extends State<LotteryPage> {
   var _currentUID = FirebaseAuth.instance.currentUser.uid;
@@ -42,6 +37,9 @@ class PieChartPageState extends State<LotteryPage> {
                     image: AssetImage('assets/images/map.png'), height: 150),
               ),
               Column(children: [
+                // text to show the winning ticket number if a game is over. if the game is
+                // not over, the text section displays how many tickets are still available
+                // in the game.
                 StreamBuilder(
                     stream: FirebaseFirestore.instance
                         .collection('tickets')
@@ -59,9 +57,7 @@ class PieChartPageState extends State<LotteryPage> {
                         Random random = new Random();
                         winningTicket = random.nextInt(100) + 1;
                         _buyTickets(winningTicket);
-                        // arraytest = _displayWinner(winningTicket);
                       }
-                      //return new Text(userDocument["First Name"]);
                       return Column(children: [
                         Text(
                             winningTicket > 0
@@ -78,6 +74,11 @@ class PieChartPageState extends State<LotteryPage> {
                       ]);
                     }),
               ]),
+
+              // this container holds the text for returning if the game has been won.
+              // if the game has been won, the home page will now display that a winning
+              // ticket has been drawn, the winning ticket is displayed, and the app's
+              // logic tells the user if their ticket is a winner.
               Container(
                   child: StreamBuilder(
                       stream: FirebaseFirestore.instance
@@ -96,7 +97,6 @@ class PieChartPageState extends State<LotteryPage> {
                             if (value == winningTicket) winner = true;
                           });
                         }
-                        //return new Text(userDocument["First Name"]);
                         return Column(children: [
                           Text(
                               winningTicket == 0
@@ -113,6 +113,8 @@ class PieChartPageState extends State<LotteryPage> {
                 child: Image.network(
                     'https://media.giphy.com/media/l378khQxt68syiWJy/source.gif'),
               ),
+
+              // button to take user to buy tickets.
               Container(
                 padding: EdgeInsets.all(2),
                 child: ElevatedButton(
@@ -127,6 +129,8 @@ class PieChartPageState extends State<LotteryPage> {
                   child: Text('Get Tickets'),
                 ),
               ),
+
+              // button to take user to learn more about how to play the game.
               Container(
                 padding: EdgeInsets.all(2),
                 child: ElevatedButton(
@@ -146,13 +150,5 @@ class PieChartPageState extends State<LotteryPage> {
         ],
       ),
     );
-  }
-
-  Future<int> _getIndex() async {
-    CollectionReference tickets =
-        FirebaseFirestore.instance.collection('tickets');
-    DocumentSnapshot currentIndex = await tickets.doc('number').get();
-    int index = currentIndex['index'];
-    return index;
   }
 }

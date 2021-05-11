@@ -123,6 +123,8 @@ class CryptoWalletInfo extends StatelessWidget {
     );
   }
 
+  // method to help launch the URL when the user clicks on a link to
+  // go to a crypto wallet page
   void _launchURL(url) async {
     if (await canLaunch(url)) {
       await launch(

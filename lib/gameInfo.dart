@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+// this class gives the overall info for how to play the game.
+// this page is static.
+
 class GameInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

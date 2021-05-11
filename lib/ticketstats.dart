@@ -3,6 +3,8 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:crypto_king/indicators_widget.dart';
 import 'package:crypto_king/pie_chart_sections.dart';
 
+// this class builds and displays the ticket stats.
+
 class TicketStats extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => PieChartPageState();
@@ -21,7 +23,10 @@ class PieChartPageState extends State {
                 color: Colors.orangeAccent,
               ),
             )),
-        body: Center(
+        body:
+
+            // pie chart data
+            Center(
           child: Column(children: <Widget>[
             Expanded(
               child: PieChart(
